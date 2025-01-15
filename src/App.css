@@ -1,0 +1,148 @@
+.App {
+  text-align: center;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cormorant Garamond", serif;
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.container {
+  max-width: none;
+}
+
+.site-header {
+  background-color: #6f7a76;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.header-tag {
+  justify-content: center;
+}
+
+.site-title {
+  font-family: "Corinthia", serif;
+  font-size: 3.5rem;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.site-header .nav-link {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.bg-image {
+  height: 75vh;
+  background-image: url("../public/images/floral-bg.jpeg");
+  background-size: cover;
+  opacity: 10%;
+}
+
+footer {
+  background-color: #6f7a76;
+  color: #ffffff;
+  padding: 50vh;
+  text-align: center;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #a27e77;
+}
+
+button.primary {
+  background-color: #a27e77;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.primary:hover {
+  background-color: #8f6d6a;
+}
+
+button.secondary {
+  background-color: #ddbaad;
+  color: #333333;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.secondary:hover {
+  background-color: #cda394;
+}
+
+.section {
+  background-color: #c2b2ab;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #6f7a76;
+  margin-bottom: 20px;
+}
+
+footer {
+  background-color: #6f7a76;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer a {
+  color: #ddbaad;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #a27e77;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #c2b2ab;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #a27e77;
+  box-shadow: 0 0 5px #a27e77;
+}
+
+@media (min-width: 768px) {
+  .header-tag {
+    justify-content: flex-start;
+  }
+}
