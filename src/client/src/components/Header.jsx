@@ -5,9 +5,14 @@ import Container from 'react-bootstrap/Container';
 const Header = () => {
     return (
         <div className="site-header">
-            <div className="d-flex w-100 header-tag">
-                <p className="mx-4">25 May 2025</p>
-                <p>Lewisburg, TN</p>
+            <div className="d-flex w-100 justify-content-between header-tag">
+                <div>
+                    <span className="header-date">25 May 2025</span>
+                    <span>Lewisburg, TN</span>
+                </div>  
+                <div>
+                    <a href="https://www.cascatasprings.com" rel="noreferrer" target="_blank">Cascata Springs</a>
+                </div>
             </div>
             <div>
                 <h1 className="site-title my-0">Alex & Taryn</h1>
@@ -18,10 +23,10 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
                         <Nav className="m-auto w-80 d-flex justify-content-center">
                             <Nav.Link key={"#"} href={`#`}>Photos</Nav.Link>
-                            <Nav.Link key={"#"} href={`#`}>Timeline of Events</Nav.Link>
+                            <Nav.Link key={"#"} href={`timeline-of-events`}>Timeline of Events</Nav.Link>
                             <Nav.Link key={"#"} href={`#`}>Travel</Nav.Link>
                             <Nav.Link key={"#"} href={`#`}>Things to Do</Nav.Link>
-                            <Nav.Link key={"#"} href={`#`}>RSVP</Nav.Link>
+                            <Nav.Link key={"#"} href={"rsvp"}>RSVP</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

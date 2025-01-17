@@ -27,13 +27,18 @@ body {
   justify-content: center;
 }
 
+.header-date {
+  margin-right: 1rem;
+}
+
 .site-title {
   font-family: "Corinthia", serif;
   font-size: 3.5rem;
 }
 
-.nav-link {
+.nav-link, a {
   color: #ffffff;
+  transition: color 0.3s ease;
 }
 
 .site-header .nav-link {
@@ -42,7 +47,7 @@ body {
 }
 
 .bg-image {
-  height: 75vh;
+  min-height: 100vh;
   background-color: rgba(255, 255, 255, 0);
   position: relative;
   z-index: 1;
@@ -75,11 +80,11 @@ nav a {
   font-weight: bold;
 }
 
-.nav-link:hover {
+.nav-link:hover, a:hover {
   color: #a27e77;
 }
 
-button.primary {
+.btn-primary {
   background-color: #a27e77;
   color: #ffffff;
   border: none;
@@ -90,11 +95,11 @@ button.primary {
   transition: background-color 0.3s ease;
 }
 
-button.primary:hover {
+.btn-primary:hover {
   background-color: #8f6d6a;
 }
 
-button.secondary {
+.btn-secondary {
   background-color: #ddbaad;
   color: #333333;
   border: none;
@@ -105,7 +110,7 @@ button.secondary {
   transition: background-color 0.3s ease;
 }
 
-button.secondary:hover {
+.btn-secondary:hover {
   background-color: #cda394;
 }
 
@@ -158,6 +163,36 @@ input:focus, textarea:focus, select:focus {
   min-width: 300px;
   width: 75vw;
   z-index: 2;
+}
+
+.timeline-sm {
+  display: flex;
+  flex-direction: column  ;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-sm::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  border-left: 2px solid #333333;
+}
+
+.event {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.event-info, .time {
+  width: 200px;
+  text-align: center;
+}
+
+.time {
+  padding-right: 10px;
 }
 
 @media (min-width: 768px) {

@@ -5,6 +5,7 @@ const RSVPForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     attendance: 'yes',
+    guests: 0,
     meal: 'chicken',
     dietary: '',
     email: '',
@@ -29,10 +30,8 @@ const RSVPForm = () => {
 
   return (
     <>
-      <h2 className="text-center">Wedding RSVP</h2>
-      <body>
-      <div className="bg-image">
-      <Form className="rsvp-form" onSubmit={handleSubmit}>
+      <Form className="rsvp-form mt-4" onSubmit={handleSubmit}>
+        <h2 className="text-center">RSVP</h2>
         <Container className="my-5">
         <Form.Group controlId="name">
           <Form.Label>Full Name</Form.Label>
@@ -62,8 +61,35 @@ const RSVPForm = () => {
 
         {formData.attendance === 'yes' && (
         <>
+          <Form.Group controlId="guests">
+            <Form.Label>How many guests will you be bringing?</Form.Label>
+            <Form.Control
+              type="number"
+              name="guests"
+              value={formData.guests}
+              onChange={handleChange}
+              min="0"
+              max="10"
+              placeholder="Enter the number of guests"
+            />
+          </Form.Group>
+
+          {[...Array(Number(formData.guests))].map((_, index) => (
+            <Form.Group controlId={`guest-name-${index + 1}`} key={index}>
+              <Form.Label>Guest #{index + 1} Full Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter guest's full name"
+                name={`guestName${index + 1}`}
+                value={formData[`guestName${index + 1}`] || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          ))}
+
         <Form.Group controlId="meal">
-          <Form.Label>Meal Preference</Form.Label>
+          <Form.Label>Your Meal Preference</Form.Label>
           <Form.Control
             as="select"
             name="meal"
@@ -75,6 +101,25 @@ const RSVPForm = () => {
             <option value="fish">Fish</option>
           </Form.Control>
         </Form.Group>
+
+        {/* There is an issue with representing x number of guests in the state and form submit */}
+        {/* Also, limit number of guests to 10 */}
+
+        {[...Array(Number(formData.guests))].map((_, index) => (
+            <Form.Group controlId={`guest-meal-${index + 1}`} key={index}>
+              <Form.Label>Guest #{index + 1} Meal Preference</Form.Label>
+              <Form.Control
+            as="select"
+            name="meal"
+            value={formData.guestMeal}
+            onChange={handleChange}
+          >
+            <option value="chicken">Chicken</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="fish">Fish</option>
+          </Form.Control>
+            </Form.Group>
+          ))}
 
         <Form.Group controlId="dietary">
           <Form.Label>Dietary Restrictions / Allergies</Form.Label>
@@ -135,14 +180,16 @@ const RSVPForm = () => {
             />
           </Form.Group>
         )}
-
-        <Button variant="primary" type="submit">
-          Submit RSVP
-        </Button>
+        <div className="text-center mt-4">
+          <p><em>In lieu of gifts, contributions to our honeymoon fund are warmly welcomed. Please click here if you would like to contribute.</em></p>
+        </div>
+        <div className="d-flex justify-content-center mt-4">
+          <Button variant="primary" type="submit">
+            Submit RSVP
+          </Button>
+        </div>
         </Container>
       </Form>
-      </div>
-      </body>
     </>
   );
 };
