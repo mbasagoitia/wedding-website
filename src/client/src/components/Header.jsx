@@ -5,15 +5,6 @@ import Container from 'react-bootstrap/Container';
 const Header = () => {
     return (
         <div className="site-header">
-            <div className="d-flex w-100 justify-content-between header-tag">
-                <div>
-                    <span className="header-date">25 May 2025</span>
-                    <span>Lewisburg, TN</span>
-                </div>  
-                <div>
-                    <a href="https://www.cascatasprings.com" rel="noreferrer" target="_blank">Cascata Springs</a>
-                </div>
-            </div>
             <div>
                 <h1 className="site-title my-0">Alex & Taryn</h1>
             </div>

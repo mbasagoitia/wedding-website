@@ -47,10 +47,42 @@ body {
 }
 
 .bg-image {
-  min-height: 100vh;
+  height: 100%;
   background-color: rgba(255, 255, 255, 0);
   position: relative;
   z-index: 1;
+}
+
+.hero-img img {
+  width: 100vw;
+}
+
+.hp-info {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 30vw;
+  height: 100%;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.hp-info a {
+  color: #ddbaad;
+  text-decoration: none;
+}
+
+.elegant-text {
+  font-family: "Corinthia", serif;
+}
+
+.elegant-heading {
+  font-family: "Corinthia", serif;
+  font-size: 3rem;
 }
 
 .bg-image::before {
@@ -64,13 +96,6 @@ body {
   background-size: cover;
   opacity: 0.1;
   z-index: -1;
-}
-
-footer {
-  background-color: #6f7a76;
-  color: #ffffff;
-  padding: 50vh;
-  text-align: center;
 }
 
 nav a {
@@ -128,6 +153,19 @@ nav a {
   margin-bottom: 20px;
 }
 
+.timeline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.timeline-content .display-img img {
+  width: 100%;
+}
+
 footer {
   background-color: #6f7a76;
   color: #ffffff;
@@ -159,6 +197,11 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 5px #a27e77;
 }
 
+.rsvp {
+  display: flex;
+  justify-content: center;
+}
+
 .rsvp-form {
   min-width: 300px;
   width: 75vw;
@@ -177,7 +220,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   left: 50%;
   height: 100%;
-  border-left: 2px solid #333333;
+  border-left: 1px solid white;
 }
 
 .event {
@@ -188,7 +231,9 @@ input:focus, textarea:focus, select:focus {
 
 .event-info, .time {
   width: 200px;
+  margin-top: 30px;
   text-align: center;
+  font-size: 1.5rem;
 }
 
 .time {

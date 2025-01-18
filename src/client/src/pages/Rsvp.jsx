@@ -2,7 +2,7 @@ import RSVPForm from "../components/RsvpForm";
 
 const Rsvp = () => {
     return (
-        <div className="d-flex justify-content-center">
+        <div className="rsvp">
             <RSVPForm />
         </div>
     )
