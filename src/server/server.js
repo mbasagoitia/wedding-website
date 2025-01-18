@@ -3,9 +3,10 @@ import path from 'path';
 import { join } from "path";
 import { fileURLToPath } from 'url';
 import cors from "cors";
-import errorHandler from "./middlewares/errorHandler.js";
-import mysql from 'mysql2/promise';
-const travelRouter = require("./routes/travelRouter");
+import dotenv from "dotenv";
+// import errorHandler from "./middlewares/errorHandler.js";
+// import mysql from 'mysql2/promise';
+import travelRouter from "./routes/travelRouter.js";
 import apiKeyRouter from "./routes/apiKeyRouter.js";
 
 dotenv.config();
@@ -33,8 +34,8 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 //   database: process.env.DB_DATABASE,
 // };
 
-app.use(apiKeyRouter);
-app.use(travelRouter);
+app.use("/api", apiKeyRouter);
+app.use("/api", travelRouter);
 
 app.use((req, res, next) => {
   try {
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 const port = process.env.port || 5000;
 

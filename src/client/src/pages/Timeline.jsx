@@ -4,7 +4,7 @@ const Timeline = () => {
     return (
         <div className="timeline-content">
                 <div className="display-img w-100">
-                    <img src="/images/bw-6.jpeg" alt="Engagement Photo" />
+                    <img src="/images/bw-6-cropped.jpeg" alt="Engagement Photo" />
                 </div>
                 <div className="timeline py-4">
                     <h2 className="text-center">Timeline of Events</h2>
