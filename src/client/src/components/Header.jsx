@@ -16,7 +16,7 @@ const Header = () => {
                             <Nav.Link key={"#"} href={`#`}>Photos</Nav.Link>
                             <Nav.Link key={"#"} href={`timeline-of-events`}>Timeline of Events</Nav.Link>
                             <Nav.Link key={"#"} href={`travel`}>Travel</Nav.Link>
-                            <Nav.Link key={"#"} href={`#`}>Things to Do</Nav.Link>
+                            <Nav.Link key={"#"} href={`things-to-do`}>Things to Do</Nav.Link>
                             <Nav.Link key={"#"} href={"rsvp"}>RSVP</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

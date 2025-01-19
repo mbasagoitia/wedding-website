@@ -1,33 +1,17 @@
-import { fetchAttractions } from "../helpers/fetchTravelData"
-import { useState, useEffect } from "react"
-import AttractionCard from "../components/AttractionCard";
+import { Container } from "react-bootstrap";
+import AttractionDisplay from "../components/AttractionDisplay";
+import attractions from "../helpers/attractions";
 
 const ThingsToDo = () => {
-    const [attractions, setAttractions] = useState([]);
-
-    useEffect(() => {
-        const getAttractions = async () => {
-            try {
-                const attractionData = await fetchAttractions();
-                console.log("Attractions:", attractionData);
-                setAttractions(attractionData)
-            } catch (error) {
-                console.error("Error fetching attractions:", error.message);
-            }
-        };
-
-        getAttractions();
-
-    }, []);
 
     return (
-        <div className="things-to-do">
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-                {attractions.map((attraction) => (
-                    <AttractionCard key={attraction.place_id} attraction={attraction} />
+        <Container className="things-to-do">
+            <div className="attraction-display d-flex mt-4">
+                {attractions.map((attraction, idx) => (
+                    <AttractionDisplay key={idx} attraction={attraction} />
                 ))}
             </div>
-        </div>
+        </Container>
     )
 }
 

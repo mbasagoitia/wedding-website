@@ -6,8 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 // import errorHandler from "./middlewares/errorHandler.js";
 // import mysql from 'mysql2/promise';
-import travelRouter from "./routes/travelRouter.js";
-import apiKeyRouter from "./routes/apiKeyRouter.js";
+// import apiKeyRouter from "./routes/apiKeyRouter.js";
 
 dotenv.config();
 
@@ -34,8 +33,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 //   database: process.env.DB_DATABASE,
 // };
 
-app.use("/api", apiKeyRouter);
-app.use("/api", travelRouter);
+// app.use("/api", apiKeyRouter);
 
 app.use((req, res, next) => {
   try {

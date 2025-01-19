@@ -9,6 +9,7 @@ body {
   font-family: "Cormorant Garamond", serif;
   background-color: #f5f5f5;
   color: #333333;
+  font-size: 1.2rem;
 }
 
 .container {
@@ -405,6 +406,28 @@ input:focus, textarea:focus, select:focus {
 
 .progress-dot.active {
   background-color: #fff;
+}
+
+.travel {
+  padding: 4rem;
+}
+
+.travel a {
+  color: #8f6d6a;
+  transition: color 0.3s ease;
+}
+
+.travel a:hover {
+  color: #a27e77;
+}
+
+.hotel-display {
+  flex-wrap: wrap;
+}
+
+.hotel-img {
+  width: 100%;
+  object-fit: fill;
 }
 
 @media (min-width: 545px) {

@@ -2,7 +2,7 @@ const Home = () => {
     return (
         <div className="hp-content">
             <div className="hero-img">
-                <img src="/images/color-6-cropped.jpeg" alt="Engagement Photo" />
+                <img src="/images/engagement-photos/color-6-cropped.jpeg" alt="Engagement Photo" />
             </div>
             <div className="hp-info">
                 <p className="elegant-text elegant-heading">Taryn Chovan<br></br>and<br></br>Alex Basagoitia</p>
