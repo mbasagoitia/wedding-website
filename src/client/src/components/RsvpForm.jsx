@@ -58,7 +58,7 @@ const RSVPForm = () => {
 
   return (
     <>
-      <Form className="rsvp-form mt-4" onSubmit={handleSubmit}>
+      <Form className="rsvp-form" onSubmit={handleSubmit}>
         <h2 className="text-center">RSVP</h2>
         <Container className="my-5">
           <Form.Group controlId="name">
@@ -104,7 +104,7 @@ const RSVPForm = () => {
 
               {formData.guests > 0 && (
                 <div className="text-center mt-4">
-                  <p><em>We are thrilled to celebrate this special day surrounded by so many of our favorite young people! However, we kindly request that only ladies and gentlemen aged twelve and older join us for our thirty-minute wedding ceremony.<br></br><br></br>For those who feel comfortable, on-site childcare will be available in the reception area, within view of the ceremony. Alternatively, parents are welcome to wait in the reception area with their children under twelve during the ceremony.<br></br><br></br>We appreciate your understanding and can't wait to celebrate with you.</em></p>
+                  <p><em>We are thrilled to celebrate this special day surrounded by so many of our favorite young people! However, we kindly request that only ladies and gentlemen aged twelve and older join us for our thirty-minute wedding ceremony.<br></br><br></br>For those who feel comfortable, on-site childcare will be available in the reception area, within view of the ceremony. Alternatively, parents are welcome to wait in the reception area with their children during the ceremony.<br></br><br></br>We appreciate your understanding and can't wait to celebrate with you.</em></p>
               </div>
               )}
 

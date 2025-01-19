@@ -3,21 +3,12 @@ function AttractionDisplay({ attraction }) {
     return (
         <div className="w-100 mb-4">
             <div>
-                <h2><a href={hotel.website} target="_blank" rel="noreferrer">{hotel.name}</a></h2>
-                <p>{hotel.rating}</p>
-                <p>{hotel.address}</p>
+                <h2><a href={attraction.website} target="_blank" rel="noreferrer">{attraction.name}</a></h2>
+                <p>{attraction.address}</p>
             </div>
-            <div className="d-flex">
-                <div className="w-50">
-                    <img src={hotel.image} alt="local hotel" className="hotel-img" />
-                </div>
-                <div className="w-50">
-                    <ul className="w-100 mx-4">
-                        {hotel.description.map((item) => (
-                            <li className="mb-4">{item}</li>
-                        ))}
-                    </ul>
-                </div>
+            <div className="w-100">
+                <p>{attraction.description}</p>
+                <img src={attraction.photoUrl} alt={attraction.name} className="attraction-img" />
             </div>
         </div>
     );
