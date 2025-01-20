@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 // import errorHandler from "./middlewares/errorHandler.js";
 // import mysql from 'mysql2/promise';
 // import apiKeyRouter from "./routes/apiKeyRouter.js";
+import checkoutRouter from "./routes/checkoutRouter.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 // };
 
 // app.use("/api", apiKeyRouter);
+app.use("/checkout", checkoutRouter);
 
 app.use((req, res, next) => {
   try {
