@@ -7,6 +7,7 @@ import Rsvp from './client/src/pages/Rsvp.jsx';
 import Timeline from './client/src/pages/Timeline.jsx';
 import Travel from './client/src/pages/Travel.jsx';
 import Photos from './client/src/pages/Photos.jsx';
+import PhotoCollection from './client/src/pages/PhotoCollection.jsx';
 import ThingsToDo from './client/src/pages/ThingsToDo.jsx';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="timeline-of-events" element={<Timeline />} />
             <Route path="photos" element={<Photos />} />
+            <Route path="photos/:category" element={<PhotoCollection />} />
             <Route path="travel" element={<Travel />} />
             <Route path="things-to-do" element={<ThingsToDo />} />
             <Route path="/rsvp" element={<Rsvp />} />

@@ -13,7 +13,7 @@ const checkout = async (req, res) => {
               product_data: {
                 name: 'Wedding Gift Contribution',
               },
-              unit_amount: req.body.amount * 100,
+              unit_amount: req.body.amount * 100, // converts cents to dollars
             },
             quantity: 1,
           },
@@ -29,6 +29,8 @@ const checkout = async (req, res) => {
         success_url: 'http://localhost:3000/success',
         cancel_url: 'http://localhost:3000/cancel',
       });
+      
+      // Send confirmation email
   
       res.status(200).json({ id: session.id });
     } catch (error) {

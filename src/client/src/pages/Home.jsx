@@ -5,7 +5,7 @@ const Home = () => {
                 <img src="/images/engagement-photos/color-6-cropped.jpeg" alt="Engagement Photo" />
             </div>
             <div className="hp-info">
-                <p className="elegant-text elegant-heading">Taryn Chovan<br></br>and<br></br>Alex Basagoitia</p>
+                <p className="">Taryn Chovan<br></br>and<br></br>Alex Basagoitia</p>
                 <div className="mt-4">
                     <p>May 25, 2025</p>
                     <p>Lewisburg, TN</p>
