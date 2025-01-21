@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Lightbox from "./Lightbox";
 
-function PhotoGrid({ directory }) {
+const PhotoGrid = ({ directory }) => {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [images, setImages] = useState([]);
