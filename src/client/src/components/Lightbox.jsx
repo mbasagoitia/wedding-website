@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function Lightbox({ images, lightboxIndex, setLightboxIndex, closeLightbox }) {
+const Lightbox = ({ images, lightboxIndex, setLightboxIndex, closeLightbox }) => {
   const prevImage = (event) => {
     if (!event.target.classList.contains("close")) {
       setLightboxIndex((lightboxIndex + images.length - 1) % images.length);
