@@ -1,14 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from './client/src/components/Header.jsx';
-import Home from './client/src/pages/Home.jsx';
-import Rsvp from './client/src/pages/Rsvp.jsx';
-import Timeline from './client/src/pages/Timeline.jsx';
-import Travel from './client/src/pages/Travel.jsx';
-import Photos from './client/src/pages/Photos.jsx';
-import PhotoCollection from './client/src/pages/PhotoCollection.jsx';
-import ThingsToDo from './client/src/pages/ThingsToDo.jsx';
+import Header from './client/components/Header.jsx';
+import Home from './client/pages/Home.jsx';
+import Rsvp from './client/pages/Rsvp.jsx';
+import Timeline from './client/pages/Timeline.jsx';
+import Travel from './client/pages/Travel.jsx';
+import Photos from './client/pages/Photos.jsx';
+import PhotoCollection from './client/pages/PhotoCollection.jsx';
+import ThingsToDo from './client/pages/ThingsToDo.jsx';
 
 function App() {
   return (
