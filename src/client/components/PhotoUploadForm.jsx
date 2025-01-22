@@ -1,38 +1,28 @@
 import { useState } from "react";
+import uploadPhotos from "../helpers/uploadPhotos";
 
-function UploadForm({ onUploadSuccess }) {
-  const [selectedFile, setSelectedFile] = useState(null);
+const UploadForm = () => {
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const [directory, setDirectory] = useState("");
 
-  const handleFileChange = (event) => setSelectedFile(event.target.files[0]);
+  const handleFileChange = (event) => setSelectedFiles(Array.from(event.target.files));
   const handleDirectoryChange = (event) => setDirectory(event.target.value);
 
   const handleUpload = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('image', selectedFile);
-    formData.append('directory', directory);
+    selectedFiles.forEach((file, index) => {
+      formData.append(`images`, file);
+    });
+    formData.append("directory", directory);
 
-    try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      if (response.ok) {
-        const { path } = await response.json();
-        onUploadSuccess(directory, path);
-      } else {
-        console.error('Upload failed');
-      }
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
+    uploadPhotos(formData);
   };
 
   return (
     <form onSubmit={handleUpload}>
-      <input type="file" onChange={handleFileChange} />
+      <input type="file" multiple onChange={handleFileChange} />
       <input
         type="text"
         value={directory}
@@ -42,6 +32,6 @@ function UploadForm({ onUploadSuccess }) {
       <button type="submit">Upload</button>
     </form>
   );
-}
+};
 
 export default UploadForm;

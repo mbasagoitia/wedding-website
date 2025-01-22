@@ -17,10 +17,17 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true,
-}));
+const cors = require('cors');
+
+const corsOptions = {
+    origin: 'https://localhost:3000', // Change this to wedding.basagoitia.net
+    credentials: true,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(express.static("public"));
 
