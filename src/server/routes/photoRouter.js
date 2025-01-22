@@ -23,8 +23,8 @@ const upload = multer({ storage });
 
 app.post('/uploads', upload.single('image'), uploadImage);
 
-router.get('/images/:directory', getImages);
+router.get('/:directory', getImages);
 
-router.get('/images/:directory/:file', getImage);
+router.get('/:directory/:file', getImage);
 
 export default router;

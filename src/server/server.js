@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 // import apiKeyRouter from "./routes/apiKeyRouter.js";
 import checkoutRouter from "./routes/checkoutRouter.js";
 import photoRouter from "./routes/photoRouter.js";
+import authRouter from "./routes/authRouter.js";
 
 dotenv.config();
 
@@ -37,9 +38,10 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 
 // app.use("/api", apiKeyRouter);
 app.use("/checkout", checkoutRouter);
-app.use(photoRouter);
+app.use('/photos', photoRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use('/auth', authRouter);
+// OAuth callback: https://wedding.basagoitia.net/auth/google/callback
 
 app.use((req, res, next) => {
   try {
