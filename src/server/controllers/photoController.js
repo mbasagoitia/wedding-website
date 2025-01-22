@@ -35,7 +35,7 @@ const getImages = (req, res) => {
       if (err) {
         return res.status(500).send('Unable to read files.');
       }
-      const imagePaths = files.map((file) => `/uploads/${directory}/${file}`);
+      const imagePaths = files.map(file => `${req.protocol}://${req.get('host')}/uploads/${directory}/${file}`);
       console.log(imagePaths);
       res.status(200).json(imagePaths);
     });

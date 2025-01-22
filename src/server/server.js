@@ -38,6 +38,8 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 // app.use("/api", apiKeyRouter);
 app.use("/checkout", checkoutRouter);
 app.use(photoRouter);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 app.use((req, res, next) => {
   try {

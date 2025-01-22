@@ -6,10 +6,7 @@ const RSVPForm = () => {
     name: '',
     attendance: 'yes',
     guests: 0,
-    meal: 'chicken',
     guestNames: [],
-    guestMeals: [],
-    dietary: '',
     email: '',
     phone: '',
     comments: '',
@@ -30,15 +27,6 @@ const RSVPForm = () => {
     setFormData((prevState) => ({
       ...prevState,
       guestNames: updatedGuestNames
-    }));
-  };
-
-  const handleGuestMealChange = (index, e) => {
-    const updatedGuestMeals = [...formData.guestMeals];
-    updatedGuestMeals[index] = e.target.value;
-    setFormData((prevState) => ({
-      ...prevState,
-      guestMeals: updatedGuestMeals
     }));
   };
 
@@ -121,47 +109,6 @@ const RSVPForm = () => {
                   />
                 </Form.Group>
               ))}
-
-              <Form.Group controlId="meal">
-                <Form.Label>Your Meal Preference</Form.Label>
-                <Form.Control
-                  as="select"
-                  name="meal"
-                  value={formData.meal}
-                  onChange={handleChange}
-                >
-                  <option value="chicken">Chicken</option>
-                  <option value="vegetarian">Vegetarian</option>
-                  <option value="fish">Fish</option>
-                </Form.Control>
-              </Form.Group>
-
-              {[...Array(Number(formData.guests))].map((_, index) => (
-                <Form.Group controlId={`guest-meal-${index + 1}`} key={index}>
-                  <Form.Label>Guest #{index + 1} Meal Preference</Form.Label>
-                  <Form.Control
-                    as="select"
-                    name={`guestMeal${index + 1}`}
-                    value={formData.guestMeals[index] || ''}
-                    onChange={(e) => handleGuestMealChange(index, e)}
-                  >
-                    <option value="chicken">Chicken</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="fish">Fish</option>
-                  </Form.Control>
-                </Form.Group>
-              ))}
-
-              <Form.Group controlId="dietary">
-                <Form.Label>Dietary Restrictions / Allergies</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  placeholder="Please specify any dietary restrictions for yourself and all guests..."
-                  name="dietary"
-                  value={formData.dietary}
-                  onChange={handleChange}
-                />
-              </Form.Group>
 
               <Form.Group controlId="email">
                 <Form.Label>Email Address</Form.Label>

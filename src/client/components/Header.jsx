@@ -13,11 +13,11 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
                         <Nav className="m-auto w-80 d-flex justify-content-center">
-                            <Nav.Link key={"#"} href={`photos`}>Photos</Nav.Link>
-                            <Nav.Link key={"#"} href={`timeline-of-events`}>Timeline of Events</Nav.Link>
-                            <Nav.Link key={"#"} href={`travel`}>Travel</Nav.Link>
-                            <Nav.Link key={"#"} href={`things-to-do`}>Things to Do</Nav.Link>
-                            <Nav.Link key={"#"} href={"rsvp"}>RSVP</Nav.Link>
+                            <Nav.Link key={"#"} href={`http://localhost:3000/photos`}>Photos</Nav.Link>
+                            <Nav.Link key={"#"} href={`http://localhost:3000/timeline-of-events`}>Timeline of Events</Nav.Link>
+                            <Nav.Link key={"#"} href={`http://localhost:3000/travel`}>Travel</Nav.Link>
+                            <Nav.Link key={"#"} href={`http://localhost:3000/things-to-do`}>Things to Do</Nav.Link>
+                            <Nav.Link key={"#"} href={"http://localhost:3000/rsvp"}>RSVP</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
