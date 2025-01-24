@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 import mysql from "mysql2/promise";
 
 const dbConfig = {
@@ -19,7 +18,7 @@ const createAuthenticatedUser = async (userInfo) => {
 
     try {
         const connection = await pool.getConnection();
-        
+
         const [rows] = await connection.execute(selectQuery, [email]);
         if (rows.length > 0) {
             console.log('User already exists in the database.');

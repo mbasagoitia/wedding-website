@@ -17,10 +17,8 @@ const app = express();
 
 app.use(express.json());
 
-const cors = require('cors');
-
 const corsOptions = {
-    origin: 'https://localhost:3000', // Change this to wedding.basagoitia.net
+    origin: 'http://localhost:3000', // Change this to wedding.basagoitia.net
     credentials: true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']

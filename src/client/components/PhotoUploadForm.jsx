@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
 import uploadPhotos from "../helpers/uploadPhotos";
 
 const UploadForm = () => {
@@ -21,16 +22,25 @@ const UploadForm = () => {
   };
 
   return (
-    <form onSubmit={handleUpload}>
+    
+    <Form onSubmit={handleUpload}>
+        <Form.Group controlId="attendance">
+          <Form.Label>Select Directory</Form.Label>
+          <Form.Control
+            as="select"
+            name="directory"
+            value={directory}
+            onChange={handleDirectoryChange}
+            required
+          >
+            <option value="ceremony">Ceremony</option>
+            <option value="reception">Reception</option>
+            <option value="other">Other</option>
+          </Form.Control>
+        </Form.Group>
       <input type="file" multiple onChange={handleFileChange} />
-      <input
-        type="text"
-        value={directory}
-        onChange={handleDirectoryChange}
-        placeholder="Enter directory (e.g., ceremony photos)"
-      />
-      <button type="submit">Upload</button>
-    </form>
+      <Button type="submit">Upload</Button>
+    </Form>
   );
 };
 

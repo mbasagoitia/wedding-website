@@ -1,6 +1,6 @@
 const uploadPhotos = async (formData) => {
     try {
-        const response = await fetch('https://localhost:5000/photos/upload', {
+        const response = await fetch('http://localhost:5000/photos/upload', {
             method: 'POST',
             credentials: 'include',
             headers: {
