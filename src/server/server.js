@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // app.use("/api", apiKeyRouter);
-app.use("/checkout", checkoutRouter);
+app.use(checkoutRouter);
 app.use('/photos', photoRouter);
 app.use('/auth', authRouter);
 app.use('/rsvp', rsvpRouter);

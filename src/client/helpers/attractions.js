@@ -26,7 +26,7 @@ const attractions = {
     name: 'The Parthenon',
     address: '2500 West End Ave, Nashville, TN 37203',
     description: 'A large public park with a lake, walking trails, and a full-scale replica of the Greek Parthenon, featuring an art museum inside.',
-    photoUrl: '/images//attractions/parthenon.jpg',
+    photoUrl: '/images//attractions/parthenon.webp',
     website: 'https://www.nashville.gov/departments/parks/parthenon'
     },
     {
@@ -68,7 +68,7 @@ const attractions = {
     name: 'Mall at Green Hills',
     address: '2126 Abbott Martin Rd, Nashville, TN 37215',
     description: 'High-end shopping mall offering great shops and restaurants.',
-    photoUrl: '/images/attractions/mall.webp',  
+    photoUrl: '/images/attractions/mall.png',  
     website: 'https://shopgreenhills.com/'
     }]
 }

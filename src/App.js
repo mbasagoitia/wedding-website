@@ -10,6 +10,7 @@ import Photos from './client/pages/Photos.jsx';
 import PhotoUploadForm from './client/components/PhotoUploadForm.jsx';
 import PhotoCollection from './client/pages/PhotoCollection.jsx';
 import ThingsToDo from './client/pages/ThingsToDo.jsx';
+import Contribute from './client/pages/Contribute.jsx';
 
 // How to handle whether people are logged in or not when they visit the upload page... cookies?
 
@@ -29,7 +30,7 @@ function App() {
             <Route path="travel" element={<Travel />} />
             <Route path="things-to-do" element={<ThingsToDo />} />
             <Route path="/rsvp" element={<Rsvp />} />
-            {/* <Route path="contribute" element={<Contribute />} /> */}
+            <Route path="contribute" element={<Contribute />} />
           </Routes>
           </div>
         </div>
