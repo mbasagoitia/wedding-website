@@ -21,7 +21,7 @@ const uploadImages = async (req, res) => {
     const files = req.files;
     const directory = req.body.directory;
     // const authToken = req.cookies.authToken;
-    console.log(files, directory);
+    // console.log(files, directory);
     try {
       if (!files || files.length === 0) {
         return res.status(400).send("No files uploaded.");
@@ -51,7 +51,8 @@ const uploadImages = async (req, res) => {
   
     //   const guestId = rows[0].id;
   
-      const targetDir = path.join(__dirname, "uploads", directory);
+      const targetDir = path.join(__dirname, "../uploads", directory);
+      console.log(targetDir);
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
@@ -62,13 +63,11 @@ const uploadImages = async (req, res) => {
         fs.renameSync(file.path, targetPath);
   
         // Save file metadata
-        await db.query(
-          "INSERT INTO GuestPhotos (guest_id, file_path) VALUES (?, ?)",
-          [1, targetPath]
-        //   [guestId, targetPath]
-        );
-  
-        console.log(`File ${file.originalname} uploaded to ${targetPath}`);
+        // await db.query(
+        //   "INSERT INTO GuestPhotos (guest_id, file_path) VALUES (?, ?)",
+        //   [1, targetPath]
+        // //   [guestId, targetPath]
+        // );
       }
   
       res.status(200).send("Files uploaded successfully!");
@@ -80,18 +79,19 @@ const uploadImages = async (req, res) => {
   
 
     const getImages = (req, res) => {
-    const directory = req.params.directory;
-    const dirPath = path.join(baseUploadDir, directory);
-    if (!fs.existsSync(dirPath)) {
-      return res.status(404).send('Directory not found.');
-    }
-  
-    fs.readdir(dirPath, (err, files) => {
-      if (err) {
-        return res.status(500).send('Unable to read files.');
-      }
-      const imagePaths = files.map(file => `${req.protocol}://${req.get('host')}/uploads/${directory}/${file}`);
-      res.status(200).json(imagePaths);
+
+        const directory = req.params.directory;
+        const dirPath = path.join(baseUploadDir, directory);
+        if (!fs.existsSync(dirPath)) {
+        return res.status(404).send('Directory not found.');
+        }
+    
+        fs.readdir(dirPath, (err, files) => {
+        if (err) {
+            return res.status(500).send('Unable to read files.');
+        }
+        const imagePaths = files.map(file => `${req.protocol}://${req.get('host')}/uploads/${directory}/${file}`);
+        res.status(200).json(imagePaths);
     });
   };
 

@@ -11,6 +11,8 @@ import PhotoUploadForm from './client/components/PhotoUploadForm.jsx';
 import PhotoCollection from './client/pages/PhotoCollection.jsx';
 import ThingsToDo from './client/pages/ThingsToDo.jsx';
 
+// How to handle whether people are logged in or not when they visit the upload page... cookies?
+
 function App() {
   return (
       <BrowserRouter>
@@ -21,6 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="timeline-of-events" element={<Timeline />} />
             <Route path="photos" element={<Photos />} />
+            {/* Make this a protected route */}
             <Route path="photos/upload" element={<PhotoUploadForm />} />
             <Route path="photos/:category" element={<PhotoCollection />} />
             <Route path="travel" element={<Travel />} />

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
+import submitFormData from "../helpers/submitFormData";
 
 const RSVPForm = () => {
   const [formData, setFormData] = useState({
     name: '',
-    attendance: 'yes',
+    attendance: true,
     guests: 0,
     guestNames: [],
     email: '',
@@ -40,7 +41,7 @@ const RSVPForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit to database
+    submitFormData(formData);
     console.log('Form data submitted:', formData);
   };
 
@@ -70,12 +71,12 @@ const RSVPForm = () => {
               onChange={handleChange}
               required
             >
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
             </Form.Control>
           </Form.Group>
 
-          {formData.attendance === 'yes' && (
+          {formData.attendance && (
             <>
               <Form.Group controlId="guests">
                 <Form.Label>How many guests will you be bringing?</Form.Label>
