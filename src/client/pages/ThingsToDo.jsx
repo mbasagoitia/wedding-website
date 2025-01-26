@@ -6,15 +6,15 @@ const ThingsToDo = () => {
 
     return (
         <Container className="things-to-do">
-            <div className="attraction-display d-flex">
+            <div>
                 <h1>Lewisburg</h1>
-                <div className="mt-4">
+                <div className="mt-4 attraction-container">
                     {attractions.lewisburg.map((attraction, idx) => (
                     <AttractionDisplay key={idx} attraction={attraction} />
                     ))}
                 </div>
-                <h1>Nashville</h1>
-                <div className="mt-4">
+                <h1 className="mt-4">Nashville</h1>
+                <div className="mt-4 attraction-container">
                     {attractions.nashville.map((attraction, idx) => (
                     <AttractionDisplay key={idx} attraction={attraction} />
                     ))}

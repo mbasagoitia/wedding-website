@@ -5,14 +5,11 @@ import Container from 'react-bootstrap/Container';
 const Header = () => {
     return (
         <div className="site-header">
-            <div>
-                <h1 className="site-title my-0"><a href="/">Alex & Taryn</a></h1>
-            </div>
-            <Navbar expand="md">
-                <Container>
+            <h1 className="site-title my-0"><a href="/">Alex & Taryn</a></h1>
+            <Navbar className="d-inline" expand="lg">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
-                        <Nav className="m-auto w-80 d-flex justify-content-center">
+                        <Nav className="d-flex justify-content-center">
                             <Nav.Link key={"1"} href={`http://localhost:3000/photos`}>Photos</Nav.Link>
                             <Nav.Link key={"2"} href={`http://localhost:3000/timeline-of-events`}>Timeline of Events</Nav.Link>
                             <Nav.Link key={"3"} href={`http://localhost:3000/travel`}>Travel</Nav.Link>
@@ -20,7 +17,6 @@ const Header = () => {
                             <Nav.Link key={"5"} href={"http://localhost:3000/rsvp"}>RSVP</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
             </Navbar>
         </div>
     )

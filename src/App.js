@@ -19,7 +19,6 @@ function App() {
       <BrowserRouter>
         <div>
           <Header />
-          <div className="bg-image">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="timeline-of-events" element={<Timeline />} />
@@ -32,7 +31,6 @@ function App() {
             <Route path="/rsvp" element={<Rsvp />} />
             <Route path="contribute" element={<Contribute />} />
           </Routes>
-          </div>
         </div>
       </BrowserRouter>
   );
