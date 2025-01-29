@@ -17,7 +17,7 @@ import Contribute from './client/pages/Contribute.jsx';
 function App() {
   return (
       <BrowserRouter>
-        <div>
+        <>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -31,7 +31,7 @@ function App() {
             <Route path="/rsvp" element={<Rsvp />} />
             <Route path="contribute" element={<Contribute />} />
           </Routes>
-        </div>
+        </>
       </BrowserRouter>
   );
 }

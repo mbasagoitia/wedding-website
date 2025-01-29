@@ -18,6 +18,7 @@ body {
 
 .site-header {
   height: 125px;
+  width: 100vw;
   background-color: #6f7a76;
   color: #ffffff;
   text-align: center;
@@ -225,15 +226,26 @@ nav a {
 .timeline {
   position: absolute;
   left: 0;
-  top: 0;
-  height: 100%;
-  width: 30vw;
+  top: 125px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
 }
 
-.timeline-content .display-img img {
-  width: 100%;
+.timeline-desc, .timeline-p {
+  padding: 4rem;
+}
+
+.timeline-content .display-img {
+  position: absolute;
+  left: 0;
+  top: 125px;
+  height: 100%;
+}
+
+.display-img img {
+  width: 50%;
+  margin: auto;
+  border: 20px solid #6f7a76;
 }
 
 footer {
@@ -287,6 +299,7 @@ input:focus, textarea:focus, select:focus {
   flex-direction: column  ;
   align-items: center;
   position: relative;
+  margin-top: 4rem;
 }
 
 .timeline-sm::before {
@@ -497,7 +510,6 @@ input:focus, textarea:focus, select:focus {
 
 .hotel-display, .attraction-display {
   flex-wrap: wrap;
-  max-width: 600px;
   gap: 1rem;
 }
 
@@ -506,14 +518,16 @@ input:focus, textarea:focus, select:focus {
   height: auto;
   object-fit: cover;
   max-height: 300px;
+  max-width: 600px;
 }
 
 .hotel-container {
-  margin: 0 auto;
+
 }
 
 .hotel-details {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -580,8 +594,9 @@ input:focus, textarea:focus, select:focus {
     width: 45%;
 }
 
-.hotel-description {
-  padding: 0 1rem;
+.hotel-description,
+.attraction-description {
+  margin-top: 0;
 }
 
 }
