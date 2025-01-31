@@ -1,6 +1,6 @@
 import TimelineDisplay from "../components/TimelineDisplay";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; // Install Framer Motion for animations
+import { motion } from "framer-motion";
 
 const Timeline = () => {
     const [flipped, setFlipped] = useState(false);
@@ -16,8 +16,8 @@ const Timeline = () => {
             <motion.div 
                 className={`card-display ${flipped ? "card-back" : "photo-bg"}`} 
                 onClick={() => setFlipped(!flipped)}
-                initial={{ rotateY: 0 }}
-                animate={{ rotateY: flipped ? 180 : 0 }}
+                initial={{ rotateY: 0, opacity: 0, y: -20 }}
+                animate={{ rotateY: flipped ? 180 : 0, opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
             >
             {showHint && (

@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div className="site-header">
             <h1 className="site-title my-0"><a href="/">Alex & Taryn</a></h1>
-            <Navbar className="d-inline" expand="lg">
+            <Navbar className="d-inline" expand="md">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
                         <Nav className="d-flex justify-content-center">
