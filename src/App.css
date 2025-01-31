@@ -223,17 +223,24 @@ nav a {
   margin-bottom: 20px;
 }
 
+.timeline-content {
+  background-color: #6f7a76;
+}
+
 .timeline, .timeline span {
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: white;
+  color: #6f7a76;
 }
 
 .timeline {
   height: 100%;
+  border: 1px solid #6f7a76;
+  margin: 1rem;
 }
 
 .timeline-desc, .timeline-p {
-  padding: 2rem;
+  padding: 1rem;
+  color: #6f7a76;
 }
 
 .card-display {
@@ -241,22 +248,61 @@ nav a {
   justify-content: center;
   align-items: center;
   margin: auto;
-  border: 20px solid #6f7a76;
-  min-height: 80vh;
+  min-height: 100vh;
+  max-width: 750px;
+  width: 90vw;
+  border: 1px solid #eef1ef;
+  border-radius: 5px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card-display > div {
+  backface-visibility: hidden;
 }
 
 .card-back {
-  background-color: #ffffff;
+  background-color: #eef1ef;
   color: #6f7a76;
+}
+
+.mirrored {
+  transform: scaleX(-1) !important;
 }
 
 .photo-bg {
   background-image: url("../public/images/engagement-photos/color-1.jpeg");
   background-size: cover;
+  background-position: center;
+  transform: rotateY(0deg);
 }
 
 .card-display img {
   width: 100%;
+}
+
+.flip-hint {
+  position: absolute;
+  left: 50%;
+  height: 50px;
+  width: 220px;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  animation: bounce 1.5s infinite;
+  z-index: 5;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
 }
 
 footer {
@@ -317,7 +363,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   left: 50%;
   height: 100%;
-  border-left: 1px solid white;
+  border-left: 1px solid #6f7a76;
 }
 
 .event {
@@ -327,14 +373,10 @@ input:focus, textarea:focus, select:focus {
 }
 
 .event-info, .time {
-  width: 200px;
+  width: 50%;
   margin-top: 30px;
   text-align: center;
   font-size: 1.5rem;
-}
-
-.time {
-  padding-right: 10px;
 }
 
 .carousel-item {
@@ -607,6 +649,11 @@ input:focus, textarea:focus, select:focus {
 .hotel-description,
 .attraction-description {
   margin-top: 0;
+}
+
+.timeline-desc {
+  padding: 2rem;
+  margin-bottom: 3rem;
 }
 
 }
