@@ -34,7 +34,7 @@ const UploadForm = () => {
 
   return (
     
-    <Form onSubmit={handleUpload}>
+    <Form onSubmit={handleUpload} className="photo-upload-form">
         <Form.Group controlId="attendance">
           <Form.Label>Directory</Form.Label>
           <Form.Control
@@ -51,7 +51,9 @@ const UploadForm = () => {
           </Form.Control>
         </Form.Group>
       <input type="file" multiple onChange={handleFileChange} />
-      <Button type="submit">Upload</Button>
+      <div className="d-flex justify-content-center mt-2">
+        <Button type="submit">Upload</Button>
+      </div>
     </Form>
   );
 };

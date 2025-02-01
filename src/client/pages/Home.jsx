@@ -8,7 +8,6 @@ const Home = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
-            {/* Box with couple's names */}
             <motion.div 
                 className="hp-box"
                 initial={{ y: -50, opacity: 0 }}
@@ -34,7 +33,6 @@ const Home = () => {
                 </div>
             </motion.div>
 
-            {/* Hero Image */}
             <motion.div 
                 className="hero"
                 initial={{ opacity: 0, x: 100 }}

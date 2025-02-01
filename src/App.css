@@ -362,6 +362,10 @@ input:focus, textarea:focus, select:focus {
   margin-top: 2rem;
 }
 
+.rsvp-img {
+  display: none;
+}
+
 .rsvp-form {
   min-width: 300px;
   width: 100%;
@@ -568,15 +572,50 @@ input:focus, textarea:focus, select:focus {
   background-color: #fff;
 }
 
+.photo-upload {
+  position: relative;
+  top: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-upload-form {
+  margin: 2rem;
+}
+
+.contribute {
+  margin: 2rem;
+}
+
+.contribute-row {
+  margin-top: 4rem;
+}
+
+.donation-option.active {
+  background-color: #a27e77;
+  color: #ffffff;
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .travel, .things-to-do, .photos {
   padding: 4rem;
+}
+
+.travel img, .things-to-do img {
+  border-radius: 5px;
 }
 
 .rsvp {
   padding: 1rem;
 }
 
-.travel a, .things-to-do a, .photo-preview-title {
+.travel a, .rsvp a, .things-to-do a, .photo-preview-title {
   color: #a27e77;
   transition: color 0.3s ease;
 }
@@ -648,6 +687,23 @@ input:focus, textarea:focus, select:focus {
     justify-content: flex-start;
   }
 
+  .rsvp-content {
+    display: flex;
+  }
+
+  .rsvp-form-area {
+    width: 50%;
+  }
+  
+  .rsvp-img {
+    display: block;
+    width: 50%;
+  }
+
+  .rsvp-img img {
+    width: 100%;
+  }
+
   .carousel-item {
     height: 560px;
   }
@@ -685,13 +741,25 @@ input:focus, textarea:focus, select:focus {
   margin-bottom: 3rem;
 }
 
-.rsvp {
-  padding: 4rem;
+.photo-upload {
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-evenly;
+}
+
+.pu-previews {
+  width: 50%;
+  order: 1;
+}
+
+.pu-upload {
+  width: 50%;
+  order: 2;
 }
 
 }
 
-@media (max-width: 991px) {
+@media (max-width: 976px) {
   .site-title, nav, nav .container {
     display: inline;
     width: 20%;

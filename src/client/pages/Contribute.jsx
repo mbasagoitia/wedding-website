@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, InputGroup, FormControl, Container, Row, Col } from "react-bootstrap";
+import { Button, Form, InputGroup, FormControl, Row, Col } from "react-bootstrap";
 import startCheckout from "../helpers/startCheckout";
 
 const Contribute = () => {
@@ -19,14 +19,20 @@ const Contribute = () => {
         setAmount(e.target.value);
     };
 
-    return (
-        <Container className="mt-5">
-            <h1>Contribute to Our Honeymoon Fund</h1>
-            <p>In lieu of gifts, we warmly welcome contributions to our honeymoon fund.</p>
+    const handleMessageSubmit = () => {
+        if (message) {
+            // Send email
+            // Show thank you message
+        }
 
-            <Row className="mb-5">
-                <Col xs={12} md={6}>
-                    <Form>
+    }
+
+    return (
+        <div className="contribute">
+            <h1 className="text-center my-4">Contribute to Our Honeymoon Fund</h1>
+            <Row className="contribute-row">
+                <Col xs={12} md={6} className="mb-4">
+                    <Form onSubmit={handleMessageSubmit}>
                         <Form.Group controlId="formName">
                             <Form.Label>Your Name</Form.Label>
                             <Form.Control
@@ -50,44 +56,42 @@ const Contribute = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formMessage">
-                            <Form.Label>Optional Message for the Couple</Form.Label>
+                            <Form.Label>Message for the Couple (Optional)</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={3}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
+                                placeholder="Your message here"
                             />
                         </Form.Group>
-                        <Button
-                            variant="primary"
-                            size="lg"
-                            // onClick={() => sendMessage()}    
-                        >
-                            Send Message
-                        </Button>
+                        <div className="d-flex justify-content-center mt-4">
+                            <Button
+                                variant="primary"
+                                size="lg"  
+                            >
+                                Send Message
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
 
                 <Col xs={12} md={6}>
                     <div className="mb-4">
-                        <h5>Select Your Contribution</h5>
-                        <div className="d-flex flex-column">
+                        <h4>Select Your Contribution</h4>
+                        <div className="d-flex flex-column mt-4">
                             {["25", "50", "100", "250", "500"].map((amt) => (
                                 <div
                                     key={amt}
                                     onClick={() => handleAmountSelect(amt)}
-                                    className={`donation-option ${
-                                        amount === Number(amt) ? "active" : ""
-                                    } p-3 mb-2 rounded border cursor-pointer`}
+                                    className={`donation-option p-3 mb-2 rounded border cursor-pointer ${amt == amount ? "active" : ""}`}
                                 >
                                     <h6>${amt}</h6>
                                 </div>
                             ))}
                             <div
                                 onClick={() => setAmount(customAmount)}
-                                className={`donation-option ${
-                                    !["25", "50", "100", "250", "500"].includes(String(amount)) ? "active" : ""
-                                } p-3 mb-2 rounded border cursor-pointer`}
+                                className={`donation-option p-3 mb-2 rounded border cursor-pointer ${customAmount == amount ? "active" : ""}`}
                             >
                                 <h6>Custom Amount</h6>
                                 <InputGroup>
@@ -102,19 +106,21 @@ const Contribute = () => {
                             </div>
                         </div>
                     </div>
+                    {amount > 0 && (
+                    <div className="d-flex justify-content-center">
+                        <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={() => startCheckout(email, amount)}
+                            disabled={!email || !amount}
+                        >
+                            Contribute ${amount}
+                        </Button>
+                    </div>
+                    )} 
                 </Col>
             </Row>
-            {amount > 0 && (
-                <Button
-                variant="primary"
-                size="lg"
-                onClick={() => startCheckout(email, amount)}
-                disabled={!email || !amount}
-            >
-                Contribute ${amount}
-            </Button>
-            )} 
-        </Container>
+        </div>
     );
 };
 

@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div className="site-header">
             <h1 className="site-title my-0"><a href="/">Alex & Taryn</a></h1>
-            <Navbar className="d-inline" expand="md">
+            <Navbar className="d-inline" expand="lg">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
                         <Nav className="d-flex justify-content-center">
@@ -15,6 +15,7 @@ const Header = () => {
                             <Nav.Link key={"3"} href={`http://localhost:3000/travel`}>Travel</Nav.Link>
                             <Nav.Link key={"4"} href={`http://localhost:3000/things-to-do`}>Things to Do</Nav.Link>
                             <Nav.Link key={"5"} href={"http://localhost:3000/rsvp"}>RSVP</Nav.Link>
+                            <Nav.Link key={"5"} href={"http://localhost:3000/contribute"}>Help Us Celebrate</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
             </Navbar>

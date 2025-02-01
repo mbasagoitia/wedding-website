@@ -18,7 +18,7 @@ const RSVPForm = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: name === "attendance" ? value === "true" : value
     }));
   };
 
@@ -71,8 +71,8 @@ const RSVPForm = () => {
               onChange={handleChange}
               required
             >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </Form.Control>
           </Form.Group>
 
@@ -141,7 +141,7 @@ const RSVPForm = () => {
             </>
           )}
 
-          {formData.attendance === 'no' && (
+          {formData.attendance === false && (
             <Form.Group controlId="message">
               <Form.Label>Message for the Couple</Form.Label>
               <Form.Control
@@ -155,7 +155,7 @@ const RSVPForm = () => {
           )}
 
           <div className="text-center mt-4">
-            <p><em>In lieu of gifts, contributions to our honeymoon fund are warmly welcomed. Please click here if you would like to contribute.</em></p>
+            <p><em>In lieu of traditional gifts, please consider contributing to our honeymoon fund to help us create lasting memories! Please <a href="/contribute" target="_blank" rel="noreferrer">click here</a> if you would like to contribute.</em></p>
           </div>
 
           <div className="d-flex justify-content-center mt-4">

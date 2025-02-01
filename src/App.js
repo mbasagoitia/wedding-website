@@ -7,7 +7,7 @@ import Rsvp from './client/pages/Rsvp.jsx';
 import Timeline from './client/pages/Timeline.jsx';
 import Travel from './client/pages/Travel.jsx';
 import Photos from './client/pages/Photos.jsx';
-import PhotoUploadForm from './client/components/PhotoUploadForm.jsx';
+import UploadPhotos from './client/pages/UploadPhotos.jsx';
 import PhotoCollection from './client/pages/PhotoCollection.jsx';
 import ThingsToDo from './client/pages/ThingsToDo.jsx';
 import Contribute from './client/pages/Contribute.jsx';
@@ -24,7 +24,7 @@ function App() {
             <Route path="timeline-of-events" element={<Timeline />} />
             <Route path="photos" element={<Photos />} />
             {/* Make this a protected route */}
-            <Route path="photos/upload" element={<PhotoUploadForm />} />
+            <Route path="photos/upload" element={<UploadPhotos />} />
             <Route path="photos/:category" element={<PhotoCollection />} />
             <Route path="travel" element={<Travel />} />
             <Route path="things-to-do" element={<ThingsToDo />} />
