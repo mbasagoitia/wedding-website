@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import validateImageFiles from '../helpers/validateImages.js';
 
 import { uploadImages, getImage, getImages } from '../controllers/photoController.js';
 
@@ -21,7 +22,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/" });
 
-router.post('/upload', upload.array("images"), uploadImages);
+router.post('/upload', upload.array("images"), validateImageFiles, uploadImages);
 
 router.get('/:directory', getImages);
 

@@ -10,6 +10,15 @@ const sendEmail = async (mailOptions) => {
         },
     });
 
+    // const transporter = nodemailer.createTransport({
+    //     host: 'smtp.mailgun.org', // Mailgun SMTP host
+    //     port: 587, // Port for sending emails
+    //     auth: {
+    //         user: 'your-mailgun-smtp-user', // Mailgun SMTP username
+    //         pass: 'your-mailgun-smtp-password', // Mailgun SMTP password
+    //     },
+    // });
+
     transporter.verify((err, success) => {
         if (err) {
             console.error('Email server connection failed:', err);

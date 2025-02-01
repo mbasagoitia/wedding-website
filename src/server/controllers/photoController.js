@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import getUserIdFromToken from '../helpers/authHelper.js';
 
 import mysql from "mysql2/promise";
+import { dir } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
