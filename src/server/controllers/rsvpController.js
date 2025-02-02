@@ -15,20 +15,13 @@ const db = mysql.createConnection(dbConfig);
 const submitRsvpForm = async (req, res) => {
     // Sanitize the html here not in the helper functions
     const { name, email, attendance, guests, guestNames, phone, comments, message } = req.body;
-    const details = {
-        name,
-        email,
-        phone,
-        guests,
-        comments
-    }
 
     try {
         submitRsvp(req, db)
 
         // Only send email confirmation if they are attending
         if (attendance) {
-            sendEmail(details);
+            sendEmail(req.body);
             // Also send confirmation to Alex and Taryn... fetch/join guests from table and send?
         }
         res.status(200).send('RSVP and guest details submitted successfully');
