@@ -5,6 +5,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 dotenv.config();
+// Modify this to also send confirmation email to Alex and Taryn
 
 const sendEmail = async (details) => {
     try {

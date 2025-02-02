@@ -29,7 +29,7 @@ const submitRsvpForm = async (req, res) => {
         // Only send email confirmation if they are attending
         if (attendance) {
             sendEmail(details);
-            // Also send confirmation to Alex and Taryn... fetch/join guests from table and send
+            // Also send confirmation to Alex and Taryn... fetch/join guests from table and send?
         }
         res.status(200).send('RSVP and guest details submitted successfully');
       
