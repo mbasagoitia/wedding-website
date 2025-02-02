@@ -1,37 +1,38 @@
-import nodemailer from 'nodemailer';
+import Mailgun from 'mailgun.js';
+import formData from 'form-data';
+import fs from 'fs/promises';
+import path from 'path';
+import dotenv from 'dotenv';
 
-const sendEmail = async (mailOptions) => {
+dotenv.config();
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_ADDRESS, // Your Gmail address
-            pass: process.env.EMAIL_PASSWORD, // Gmail app password
-        },
-    });
-
-    // const transporter = nodemailer.createTransport({
-    //     host: 'smtp.mailgun.org', // Mailgun SMTP host
-    //     port: 587, // Port for sending emails
-    //     auth: {
-    //         user: 'your-mailgun-smtp-user', // Mailgun SMTP username
-    //         pass: 'your-mailgun-smtp-password', // Mailgun SMTP password
-    //     },
-    // });
-
-    transporter.verify((err, success) => {
-        if (err) {
-            console.error('Email server connection failed:', err);
-        } else {
-            console.log('Email server connected successfully');
-        }
-    });
-
+const sendEmail = async (details) => {
     try {
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-    } catch (error) {
-        console.error('Error sending email:', error);
+        const __dirname = path.dirname(new URL(import.meta.url).pathname);
+        const templatePath = path.join(__dirname, 'rsvpTemplate.html');
+        const data = await fs.readFile(templatePath, 'utf8');
+
+        const rsvpHtmlContent = data
+            .replace('{{guestName}}', details.name)
+            .replace('{{guests}}', details.guests)
+            .replace('{{email}}', details.email)
+            .replace('{{phone}}', details.phone)
+            .replace('{{comments}}', details.comments || 'No comments');
+
+        const mailOptions = {
+            from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
+            to: [details.email],
+            subject: 'RSVP Confirmation',
+            html: rsvpHtmlContent,
+        };
+
+        const mailgun = new Mailgun(formData);
+        const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+
+        const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
+        console.log('Email sent successfully:', response);
+    } catch (err) {
+        console.error("Error sending email:", err);
     }
 };
 

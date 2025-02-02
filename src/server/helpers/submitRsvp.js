@@ -3,6 +3,8 @@ import validator from 'validator';
 const submitRsvp = async (req, db) => {
     let { name, attendance, guests, guestNames, email, phone, comments, message } = req.body;
 
+    // Handle if there are no guests!!!
+
     name = validator.escape(name);
     email = validator.normalizeEmail(email);
     phone = validator.escape(phone);

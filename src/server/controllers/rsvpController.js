@@ -2,7 +2,6 @@ import mysql from "mysql2";
 
 import submitRsvp from "../helpers/submitRsvp.js";
 import sendEmail from "../helpers/sendEmail.js";
-import rsvpHtmlContent from "../helpers/rsvpEmail.js";
 
 const dbConfig = {
     host: process.env.DB_HOST,
@@ -10,21 +9,26 @@ const dbConfig = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
 };
+
 const db = mysql.createConnection(dbConfig);
 
 const submitRsvpForm = async (req, res) => {
-    const { name, attendance, guests, comments } = req.body;
+    // Sanitize the html here not in the helper functions
+    const { name, email, attendance, guests, guestNames, phone, comments, message } = req.body;
+
+    const details = {
+        name,
+        email,
+        phone,
+        guests,
+        comments
+    }
+
     try {
         submitRsvp(req, db)
-        // Only send email confirmation if they are attending
-        const mailOptions = {
-            from: '"Alex and Taryn" <your-email@gmail.com>',
-            to: email,
-            subject: 'Wedding RSVP Confirmation',
-            html: rsvpHtmlContent,
-        };
 
-        sendEmail(mailOptions);
+        // Only send email confirmation if they are attending
+        sendEmail(details);
         res.status(200).send('RSVP and guest details submitted successfully');
       
     } catch (error) {
