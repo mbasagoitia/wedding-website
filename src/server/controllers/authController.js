@@ -47,7 +47,6 @@ const authenticateUser = async (req, res) => {
     res.cookie("userName", user.name, { secure: true, sameSite: "Lax" });
     res.cookie("userEmail", user.email, { secure: true, sameSite: "Lax" });
     
-    // Does this redirect to the front end route?
     res.redirect("/photos/upload");
   } catch (error) {
     console.error("Error handling callback:", error);
