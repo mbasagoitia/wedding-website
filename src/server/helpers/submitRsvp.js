@@ -1,42 +1,48 @@
-import validator from 'validator';
+import mysql from "mysql2";
 
-const submitRsvp = async (req, db) => {
-    let { name, attendance, guests, guestNames, email, phone, comments, message } = req.body;
+const dbConfig = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+};
 
-    // Handle if there are no guests!!!
+const db = mysql.createConnection(dbConfig);
 
-    name = validator.escape(name);
-    email = validator.normalizeEmail(email);
-    phone = validator.escape(phone);
-    comments = validator.escape(comments);
-    message = validator.escape(message);
+const submitRsvp = async (req, res) => {
+    try {
+        const { name, attendance, guests, guestNames, email, phone, comments, message } = req.body;
 
-    if (!validator.isEmail(email)) {
-        return res.status(400).send('Invalid email address');
-    }
+        const rsvpQuery = 'INSERT INTO RSVP (name, attendance, guests, email, phone, comments, message) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
-    const rsvpQuery = 'INSERT INTO RSVP (name, attendance, guests, email, phone, comments, message) VALUES (?, ?, ?, ?, ?, ?, ?)';
-
-    db.query(rsvpQuery, [name, attendance, guests, email, phone, comments, message], (err, result) => {
-        if (err) {
-            console.error('Error inserting data into RSVP:', err);
-            return res.status(500).send('Database error');
-        }
-
-        const rsvpId = result.insertId;
-
-        const guestQuery = 'INSERT INTO Guests (rsvp_id, guest_name) VALUES ?';
-        const guestData = guestNames.map((guest) => [rsvpId, validator.escape(guest)]);
-
-        db.query(guestQuery, [guestData], (err, guestResult) => {
+        db.query(rsvpQuery, [name, attendance, guests, email, phone, comments, message], (err, result) => {
             if (err) {
-                console.error('Error inserting guests into Guests table:', err);
-                return res.status(500).send('Database error while inserting guests');
+                console.error('Error inserting data into RSVP:', err);
+                return res.status(500).json({ error: 'Database error while inserting RSVP.' });
             }
 
-            console.log('Guests inserted successfully:', guestResult);
+            const rsvpId = result.insertId;
+
+            if (guestNames.length > 0) {
+                const guestQuery = 'INSERT INTO Guests (rsvp_id, guest_name) VALUES ?';
+                const guestData = guestNames.map((guest) => [rsvpId, guest]);
+
+                db.query(guestQuery, [guestData], (err, guestResult) => {
+                    if (err) {
+                        console.error('Error inserting guests into Guests table:', err);
+                        return res.status(500).json({ error: 'Database error while inserting guests.' });
+                    }
+
+                    console.log('Guests inserted successfully:', guestResult);
+                });
+            }
+
+            res.status(200).json({ message: "RSVP submitted successfully!" });
         });
-    });
+    } catch (error) {
+        console.error("Unexpected error in submitRsvp:", error);
+        res.status(500).json({ error: "Internal server error while submitting RSVP." });
+    }
 };
 
 export default submitRsvp;

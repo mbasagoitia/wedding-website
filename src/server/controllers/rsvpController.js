@@ -1,28 +1,17 @@
-import mysql from "mysql2";
-
 import submitRsvp from "../helpers/submitRsvp.js";
-import sendEmail from "../helpers/sendEmail.js";
-
-const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-};
-
-const db = mysql.createConnection(dbConfig);
+import { sendAdminEmail, sendGuestEmail } from "../helpers/sendEmails.js";
 
 const submitRsvpForm = async (req, res) => {
-    // Sanitize the html here not in the helper functions
-    const { name, email, attendance, guests, guestNames, phone, comments, message } = req.body;
+
+    const { attendance } = req.body;
 
     try {
-        submitRsvp(req, db)
+        submitRsvp(req);
+        sendAdminEmail(req.body);
 
-        // Only send email confirmation if they are attending
+        // Only send confirmation email confirmation if they are attending
         if (attendance) {
-            sendEmail(req.body);
-            // Also send confirmation to Alex and Taryn... fetch/join guests from table and send?
+            sendGuestEmail(req.body);
         }
         res.status(200).send('RSVP and guest details submitted successfully');
       
