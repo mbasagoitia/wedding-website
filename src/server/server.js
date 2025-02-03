@@ -39,7 +39,6 @@ app.use(checkoutRouter);
 app.use('/photos', photoRouter);
 app.use('/auth', authRouter);
 app.use('/rsvp', rsvpRouter);
-// OAuth callback: https://wedding.basagoitia.net/auth/google/callback
 
 app.use((req, res, next) => {
   try {

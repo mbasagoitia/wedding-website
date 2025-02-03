@@ -4,7 +4,6 @@ const stripePromise = loadStripe('pk_live_51QjMMWKPzIRnXhtuKbmIxsvkdl9nwRH3jGZRt
 const startCheckout = async (email, amount) => {
     
     try {
-
         const response = await fetch('http://localhost:5000/checkout', {
             method: 'POST',
             credentials: 'include',
