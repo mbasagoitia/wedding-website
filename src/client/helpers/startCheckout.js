@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe('pk_live_51QjMMWKPzIRnXhtuKbmIxsvkdl9nwRH3jGZRtRlZyNbX2GYMOqg943OATXJVZ0huBSAwBvWx9wS3zfANB8Ckeuoz00lfLuULFk');
 
 const startCheckout = async (email, amount) => {
     
