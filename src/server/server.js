@@ -2,6 +2,7 @@ import express from "express";
 import path from 'path';
 import { join } from "path";
 import { fileURLToPath } from 'url';
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 // import errorHandler from "./middlewares/errorHandler.js";
@@ -17,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://wedding.basagoitia.net',
+    origin: 'http://localhost:3000', // 'http://wedding.basagoitia.net'
     credentials: true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
@@ -25,6 +26,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(cookieParser());
 
 app.use(express.static("public"));
 

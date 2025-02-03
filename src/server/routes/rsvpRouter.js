@@ -1,7 +1,7 @@
 import express from "express";
 
 import submitRsvpForm from "../controllers/rsvpController.js";
-import sanitizeInputs from '../middleware/sanitizeInputs.js';
+import sanitizeInputs from '../middlewares/sanitizeInputs.js';
 
 const router = express.Router();
 

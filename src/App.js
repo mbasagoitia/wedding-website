@@ -18,13 +18,14 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/auth/status", { 
+    fetch("http://localhost:5000/auth/status", { 
         credentials: "include"
     })
     .then(response => response.json())
     .then(data => {
         if (data.isAuthenticated) {
             setUser(data.user);
+            console.log(data.user);
         }
     })
     .catch(() => setUser(null));
@@ -37,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="timeline-of-events" element={<Timeline />} />
-            <Route path="photos" element={<Photos />} />
+            <Route path="photos" element={<Photos user={user} />} />
             <Route path="photos/upload" element={<UploadPhotos user={user} />} />
             <Route path="photos/:category" element={<PhotoCollection />} />
             <Route path="travel" element={<Travel />} />

@@ -1,6 +1,4 @@
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const Header = () => {
     return (
@@ -10,7 +8,10 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex">
                         <Nav className="d-flex justify-content-center">
-                            <Nav.Link key={"1"} href={`/photos`}>Photos</Nav.Link>
+                            <NavDropdown title="Photos" id="upload-dropdown">
+                                <NavDropdown.Item href={`/photos`}>View Photos</NavDropdown.Item>
+                                <NavDropdown.Item href="/photos/upload">Upload Photos</NavDropdown.Item>
+                            </NavDropdown>
                             <Nav.Link key={"2"} href={`/timeline-of-events`}>Timeline of Events</Nav.Link>
                             <Nav.Link key={"3"} href={`/travel`}>Travel</Nav.Link>
                             <Nav.Link key={"4"} href={`/things-to-do`}>Things to Do</Nav.Link>
