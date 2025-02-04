@@ -12,7 +12,7 @@ const Header = () => {
                                 <NavDropdown.Item href={`/photos`}>View Photos</NavDropdown.Item>
                                 <NavDropdown.Item href="/photos/upload">Upload Photos</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link key={"2"} href={`/timeline-of-events`}>Timeline of Events</Nav.Link>
+                            <Nav.Link key={"2"} href={`http://wedding.basagoitia.net/timeline-of-events`}>Timeline of Events</Nav.Link>
                             <Nav.Link key={"3"} href={`/travel`}>Travel</Nav.Link>
                             <Nav.Link key={"4"} href={`/things-to-do`}>Things to Do</Nav.Link>
                             <Nav.Link key={"5"} href={"/rsvp"}>RSVP</Nav.Link>
