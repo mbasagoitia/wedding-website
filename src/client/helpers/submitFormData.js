@@ -2,7 +2,7 @@ import { redirect } from "react-router";
 
 const submitFormData = async (formData) => {
     try {
-        const response = await fetch('http://localhost:5000/rsvp/submit-new', {
+        const response = await fetch('http://localhost:5000/api/rsvp/submit-new', {
             method: 'POST',
             credentials: 'include',
             headers: {

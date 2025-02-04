@@ -602,7 +602,7 @@ input:focus, textarea:focus, select:focus {
   opacity: 0.6;
 }
 
-.travel, .things-to-do, .photos, .photo-collection-page {
+.travel, .things-to-do, .photos, .photo-collection-page, .contribute {
   padding: 2rem;
   padding-top: 3rem;
 }
@@ -717,7 +717,7 @@ input:focus, textarea:focus, select:focus {
     text-align: left;
   }
 
-  .travel, .things-to-do, .photos, .photo-collection-page {
+  .travel, .things-to-do, .photos, .photo-collection-page, .contribute {
     padding: 4rem;
     padding-top: 6rem;
   }
