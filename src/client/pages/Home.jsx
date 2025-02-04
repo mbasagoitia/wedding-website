@@ -32,7 +32,6 @@ const Home = () => {
                     </motion.div>
                 </div>
             </motion.div>
-
             <motion.div 
                 className="hero"
                 initial={{ opacity: 0, x: 100 }}

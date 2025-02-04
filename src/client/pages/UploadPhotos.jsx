@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PhotoUploadForm from "../components/PhotoUploadForm.jsx";
 import PreviewCollection from "../components/PreviewCollection.jsx";
 

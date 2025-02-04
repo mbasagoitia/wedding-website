@@ -8,8 +8,6 @@ const uploadPhotos = async (photoUploadData) => {
 
     formData.append("directory", photoUploadData.directory);
 
-    // "/api/photos/upload"
-
     const response = await fetch("http://localhost:5000/api/photos/upload", {
       method: "POST",
       credentials: "include",
@@ -17,12 +15,14 @@ const uploadPhotos = async (photoUploadData) => {
     });
 
     if (response.ok) {
-      console.log("Photos uploaded successfully");
+      const data = await response.json();
+      return { success: true, message: data.message || "Photos uploaded successfully!" };
     } else {
-      console.error("Upload failed");
+      return { success: false, message: "Upload failed. Please try again." };
     }
   } catch (error) {
     console.error("Error uploading file:", error);
+    return { success: false, message: "An error occurred while uploading. Please try again later." };
   }
 };
 

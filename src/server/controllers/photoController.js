@@ -46,7 +46,7 @@ const uploadImages = async (req, res) => {
         );
       }
   
-      res.status(200).send("Files uploaded successfully!");
+      res.status(200).send({ message: "Files uploaded successfully!" });
     } catch (error) {
       console.error("Error processing upload:", error);
       res.status(500).send("Server error. Please try again.");

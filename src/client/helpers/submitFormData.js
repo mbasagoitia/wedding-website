@@ -21,11 +21,12 @@ const submitFormData = async (formData) => {
         });
 
         if (response.ok) {
-            alert("RSVP submitted successfully");
+            const data = await response.json();
             redirect("/");
-            
+            return { success: true, message: data.message || "RSVP submitted successfully!" };
         } else {
             console.error("RSVP submission failed");
+            return { success: false, message: "Submission failed. Please try again." };
         }
     } catch (error) {
         console.error("Error submitting RSVP", error);

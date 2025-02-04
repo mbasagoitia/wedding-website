@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
+import Alert from "./Alert";
 import submitFormData from "../helpers/submitFormData";
 
 const RSVPForm = () => {
+
+  const [showAlert, setShowAlert] = useState(true);
+  const [alertContent, setAlertContent] = useState({});
+
   const [formData, setFormData] = useState({
     name: '',
     attendance: true,
@@ -39,14 +44,31 @@ const RSVPForm = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    submitFormData(formData);
-    console.log('Form data submitted:', formData);
+    const res = await submitFormData(formData);
+    if (res.success) {
+      setAlertContent({
+        title: "Success!",
+        message: res.message
+      })
+    } else {
+      setAlertContent({
+        title: "Error",
+        message: res.message
+      })
+    }
+
+    setShowAlert(true);
   };
 
   return (
     <>
+      {showAlert && <Alert content={alertContent} onClose={handleCloseAlert} />}
       <Form className="rsvp-form" onSubmit={handleSubmit}>
         <h2 className="text-center">RSVP</h2>
         <Container className="my-5">
