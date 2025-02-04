@@ -1,10 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import getUserIdFromToken from '../helpers/authHelper.js';
 
 import mysql from "mysql2/promise";
-import { dir } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,8 +19,8 @@ const db = mysql.createPool({
 const uploadImages = async (req, res) => {
     const files = req.files;
     const directory = req.body.directory;
-    // const authToken = req.cookies.authToken;
-    // console.log(files, directory);
+    const { user } = req;
+
     try {
       if (!files || files.length === 0) {
         return res.status(400).send("No files uploaded.");
@@ -31,29 +29,7 @@ const uploadImages = async (req, res) => {
         return res.status(400).send("Directory is required.");
       }
   
-    //   if (!authToken) {
-    //     return res.status(401).send("Unauthorized. Missing authentication token.");
-    //   }
-
-    //   const userId = await getUserIdFromToken(authToken);
-
-    //   if (!userId) {
-    //     return res.status(403).send("Unauthorized user.");
-    //   }
-  
-    //   const [rows] = await db.query(
-    //     "SELECT id FROM AuthenticatedUsers WHERE id = ?",
-    //     [userId]
-    //   );
-  
-    //   if (rows.length === 0) {
-    //     return res.status(403).send("Unauthorized user.");
-    //   }
-  
-    //   const guestId = rows[0].id;
-  
       const targetDir = path.join(__dirname, "../uploads", directory);
-      console.log(targetDir);
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
@@ -62,13 +38,12 @@ const uploadImages = async (req, res) => {
         const targetPath = path.join(targetDir, file.originalname);
 
         fs.renameSync(file.path, targetPath);
+        // console.log(targetPath);
   
-        // Save file metadata
-        // await db.query(
-        //   "INSERT INTO GuestPhotos (guest_id, file_path) VALUES (?, ?)",
-        //   [1, targetPath]
-        // //   [guestId, targetPath]
-        // );
+        await db.query(
+          "INSERT INTO GuestPhotos (guest_id, file_path) VALUES (?, ?)",
+          [user.id, targetPath]
+        );
       }
   
       res.status(200).send("Files uploaded successfully!");

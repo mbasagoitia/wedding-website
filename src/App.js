@@ -18,7 +18,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/auth/status", { 
+    fetch("http://localhost:5000/api/auth/status", { 
         credentials: "include"
     })
     .then(response => response.json())
@@ -37,14 +37,14 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="timeline-of-events" element={<Timeline />} />
-            <Route path="photos" element={<Photos user={user} />} />
-            <Route path="photos/upload" element={<UploadPhotos user={user} />} />
-            <Route path="photos/:category" element={<PhotoCollection />} />
-            <Route path="travel" element={<Travel />} />
-            <Route path="things-to-do" element={<ThingsToDo />} />
+            <Route path="/timeline-of-events" element={<Timeline />} />
+            <Route path="/photos" element={<Photos user={user} />} />
+            <Route path="/photos/upload" element={<UploadPhotos user={user} />} />
+            <Route path="/photos/:category" element={<PhotoCollection />} />
+            <Route path="/travel" element={<Travel />} />
+            <Route path="/things-to-do" element={<ThingsToDo />} />
             <Route path="/rsvp" element={<Rsvp />} />
-            <Route path="contribute" element={<Contribute />} />
+            <Route path="/contribute" element={<Contribute />} />
           </Routes>
         </>
       </BrowserRouter>

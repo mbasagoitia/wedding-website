@@ -12,6 +12,7 @@ const pool = mysql.createPool(dbConfig);
 
 const createAuthenticatedUser = async (userInfo) => {
     const { name, email } = userInfo;
+    console.log(userInfo);
 
     const selectQuery = 'SELECT * FROM AuthenticatedUsers WHERE email = ?';
     const insertQuery = 'INSERT INTO AuthenticatedUsers (name, email) VALUES (?, ?)';

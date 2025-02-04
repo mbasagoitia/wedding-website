@@ -4,7 +4,7 @@ import checkout from "../controllers/checkoutController.js";
 
 const router = express.Router();
 
-router.post('/checkout', (req, res) => {
+router.post('/', (req, res) => {
     checkout(req, res);
 });
 

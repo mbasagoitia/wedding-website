@@ -12,7 +12,7 @@ const authenticateUser = async (req, res) => {
         code: authCode,
         client_id: process.env.TEST_OAUTH_CLIENT_ID, //change back
         client_secret: process.env.TEST_OAUTH_CLIENT_SECRET, //change back
-        redirect_uri: "http://localhost:5000/auth/google/callback", // change back
+        redirect_uri: "http://localhost:5000/api/auth/google/callback", // change back
         grant_type: "authorization_code",
       }),
     });
@@ -27,7 +27,6 @@ const authenticateUser = async (req, res) => {
     );
 
     const userInfo = await userInfoResponse.json();
-    console.log(userInfo);
 
     const user = await createAuthenticatedUser(userInfo);
 

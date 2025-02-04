@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://localhost:3000', // 'http://wedding.basagoitia.net'
+    origin: 'http://localhost:3000', // CORS not needed during production
     credentials: true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
@@ -35,12 +35,12 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(checkoutRouter);
-app.use('/photos', photoRouter);
-app.use('/auth', authRouter);
-app.use('/rsvp', rsvpRouter);
+app.use('/api/checkout', checkoutRouter);
+app.use('/api/photos', photoRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/rsvp', rsvpRouter);
 
 app.use((req, res, next) => {
   try {
