@@ -35,7 +35,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/checkout', checkoutRouter);
 app.use('/api/photos', photoRouter);

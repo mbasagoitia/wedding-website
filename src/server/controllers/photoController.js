@@ -66,8 +66,10 @@ const uploadImages = async (req, res) => {
         if (err) {
             return res.status(500).send('Unable to read files.');
         }
+        // Potential issues here
         const imagePaths = files.map(file => `${req.protocol}://${req.get('host')}/uploads/${directory}/${file}`);
         res.status(200).json(imagePaths);
+        console.log(imagePaths)
     });
   };
 
