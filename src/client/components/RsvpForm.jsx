@@ -175,7 +175,6 @@ const RSVPForm = () => {
               />
             </Form.Group>
           )}
-
           <div className="text-center mt-4">
             <p><em>In lieu of traditional gifts, please consider contributing to our honeymoon fund to help us create lasting memories! Please <a href="/contribute" target="_blank" rel="noreferrer">click here</a> if you would like to contribute.</em></p>
           </div>
