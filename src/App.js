@@ -12,6 +12,7 @@ import UploadPhotos from './client/pages/UploadPhotos.jsx';
 import PhotoCollection from './client/pages/PhotoCollection.jsx';
 import ThingsToDo from './client/pages/ThingsToDo.jsx';
 import Contribute from './client/pages/Contribute.jsx';
+import Success from './client/pages/Success.jsx';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/things-to-do" element={<ThingsToDo />} />
             <Route path="/rsvp" element={<Rsvp />} />
             <Route path="/contribute" element={<Contribute />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
         </>
       </BrowserRouter>

@@ -615,9 +615,13 @@ input:focus, textarea:focus, select:focus {
   opacity: 0.6;
 }
 
-.travel, .things-to-do, .photos, .photo-collection-page, .contribute, .rsvp {
+.travel, .things-to-do, .photos, .photo-collection-page, .contribute, .rsvp, .success {
   padding: 2rem;
   padding-top: 3rem;
+}
+
+.success a {
+  text-decoration: none;
 }
 
 .travel img, .things-to-do img {
@@ -768,7 +772,7 @@ input:focus, textarea:focus, select:focus {
     text-align: left;
   }
 
-  .travel, .things-to-do, .photos, .photo-collection-page, .rsvp, .contribute {
+  .travel, .things-to-do, .photos, .photo-collection-page, .rsvp, .contribute, .success {
     padding: 4rem;
     padding-top: 6rem;
   }

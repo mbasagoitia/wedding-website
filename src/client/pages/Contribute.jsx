@@ -42,8 +42,6 @@ const Contribute = () => {
             if (res.success) {
                 setFormData(prevState => ({
                     ...prevState,
-                    name: '',
-                    email: '',
                     message: ''
                 }))
             }

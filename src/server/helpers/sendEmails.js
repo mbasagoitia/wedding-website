@@ -34,7 +34,6 @@ const sendGuestRsvpEmail = async (details) => {
         const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
         const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
-        console.log('Emails sent successfully:', response);
     } catch (err) {
         console.error("Error sending email:", err);
     }
@@ -73,7 +72,6 @@ const sendAdminRsvpEmail = async (details) => {
         const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
         const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
-        console.log('Emails sent successfully:', response);
 
     } catch (err) {
         console.error("Error sending email:", err);
@@ -101,7 +99,6 @@ const sendGuestContributionEmail = async (details) => {
         const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
         const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
-        console.log('Emails sent successfully:', response);
     } catch (err) {
         console.error("Error sending email:", err);
     }
@@ -131,7 +128,6 @@ const sendAdminContributionEmail = async (details) => {
         const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
         const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
-        console.log('Emails sent successfully:', response);
     } catch (err) {
         console.error("Error sending email:", err);
     }
@@ -160,7 +156,6 @@ const sendAdminMessageEmail = async (details) => {
         const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
         const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
-        console.log('Emails sent successfully:', response);
     } catch (err) {
         console.error("Error sending email:", err);
     }
