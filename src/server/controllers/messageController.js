@@ -1,4 +1,4 @@
-import { sendAdminMessageEmail } from "../helpers/sendEmails";
+import { sendAdminMessageEmail } from "../helpers/sendEmails.js";
 
 const submitMessage = async (req, res) => {
     try {

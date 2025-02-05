@@ -1,6 +1,7 @@
 import validator from 'validator';
 
 const sanitizeInputs = (req, res, next) => {
+    console.log(req.body);
     try {
         let { name, attendance, guests, guestNames, email, phone, comments, message } = req.body;
 

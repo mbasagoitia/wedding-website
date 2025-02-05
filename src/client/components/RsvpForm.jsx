@@ -5,7 +5,7 @@ import submitFormData from "../helpers/submitFormData";
 
 const RSVPForm = () => {
 
-  const [showAlert, setShowAlert] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
   const [alertContent, setAlertContent] = useState({});
 
   const [formData, setFormData] = useState({

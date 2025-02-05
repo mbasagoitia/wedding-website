@@ -123,7 +123,7 @@ const sendAdminContributionEmail = async (details) => {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
             // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
             to: ["marika.basagoitia@gmail.com"],
-            subject: 'New Wedding Contribution!',
+            subject: 'New Wedding Contribution',
             html: htmlContent
         };
 
@@ -152,7 +152,7 @@ const sendAdminMessageEmail = async (details) => {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
             // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
             to: ["marika.basagoitia@gmail.com"],
-            subject: 'New Wedding Contribution!',
+            subject: 'New Wedding Message',
             html: htmlContent
         };
 

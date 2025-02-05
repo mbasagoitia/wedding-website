@@ -1,12 +1,12 @@
-const submitFormData = async (formData) => {
+const sendMessage = async (formData) => {
     try {
-        const response = await fetch('http://localhost:5000/api/rsvp/submit-new', {
+        const response = await fetch('http://localhost:5000/api/send-message/new', {
             method: 'POST',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
+            }, 
+            body: JSON.stringify(formData),
         });
 
         let data;
@@ -17,15 +17,15 @@ const submitFormData = async (formData) => {
         }
 
         if (response.ok) {
-            return { success: true, message: data.message || "RSVP submitted successfully!" };
+            return { success: true, message: data.message || "Your message has been received!" };
         } else {
-            console.error("RSVP submission failed");
+            console.error("Message submission failed");
             return { success: false, message: data.error || "Submission failed. Please try again." };
         }
     } catch (error) {
-        console.error("Error submitting RSVP", error);
+        console.error("Error submitting message", error);
         return { success: false, message: "An unexpected error occurred. Please try again." };
     }
 };
 
-export default submitFormData;
+export default sendMessage;

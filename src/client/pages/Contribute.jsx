@@ -1,34 +1,64 @@
 import { useState } from "react";
 import { Button, Form, InputGroup, FormControl, Row, Col } from "react-bootstrap";
+import Alert from "../components/Alert.jsx";
 import startCheckout from "../helpers/startCheckout";
+import sendMessage from "../helpers/sendMessage";
 
 const Contribute = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [amount, setAmount] = useState(0);
-    const [message, setMessage] = useState("");
-    const [customAmount, setCustomAmount] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertContent, setAlertContent] = useState({});
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        amount: '',
+        customAmount: '',
+        message: ''
+    });
+
+    const handleCloseAlert = () => setShowAlert(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
 
     const handleAmountSelect = (amount) => {
-        setAmount(amount);
-        setCustomAmount("");
+        setFormData(prevState => ({ ...prevState, amount, customAmount: '' }));
     };
 
     const handleCustomAmount = (e) => {
-        setCustomAmount(e.target.value);
-        setAmount(e.target.value);
+        const value = e.target.value;
+        setFormData(prevState => ({ ...prevState, customAmount: value, amount: value }));
     };
 
-    const handleMessageSubmit = () => {
-        if (message) {
-            // Send email
-            // Show thank you message
+    const handleMessageSubmit = async (e) => {
+        e.preventDefault();
+        if (formData.message) {
+            const res = await sendMessage(formData);
+            setAlertContent({
+                title: res.success ? "Success!" : "Error",
+                message: res.message
+            });
+            if (res.success) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    name: '',
+                    email: '',
+                    message: ''
+                }))
+            }
+            setShowAlert(true);
         }
+    };
 
-    }
+    const handleCheckout = () => {
+        const finalAmount = formData.customAmount ? formData.customAmount : formData.amount;
+        startCheckout({ ...formData, amount: finalAmount, customAmount: undefined });
+    };
 
     return (
         <div className="contribute">
+            {showAlert && <Alert content={alertContent} onClose={handleCloseAlert} />}
             <h1 className="my-4">Contribute to Our Honeymoon Fund</h1>
             <p>In lieu of traditional gifts, contributions to our honeymoon fund are warmly welcomed. Please fill out the form below so we can properly thank you!</p>
             <Row className="contribute-row">
@@ -39,8 +69,9 @@ const Contribute = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Enter your name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
                                 required
                             />
                         </Form.Group>
@@ -50,8 +81,9 @@ const Contribute = () => {
                             <Form.Control
                                 type="email"
                                 placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
                                 required
                             />
                         </Form.Group>
@@ -61,16 +93,14 @@ const Contribute = () => {
                             <Form.Control
                                 as="textarea"
                                 rows={3}
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 placeholder="Your message here"
                             />
                         </Form.Group>
                         <div className="d-flex justify-content-center mt-4">
-                            <Button
-                                variant="primary"
-                                size="lg"  
-                            >
+                            <Button variant="primary" size="lg" type="submit">
                                 Send Message
                             </Button>
                         </div>
@@ -85,14 +115,14 @@ const Contribute = () => {
                                 <div
                                     key={amt}
                                     onClick={() => handleAmountSelect(amt)}
-                                    className={`donation-option p-3 mb-2 rounded border cursor-pointer ${amt == amount ? "active" : ""}`}
+                                    className={`donation-option p-3 mb-2 rounded border cursor-pointer ${amt === formData.amount ? "active" : ""}`}
                                 >
                                     <h6>${amt}</h6>
                                 </div>
                             ))}
                             <div
-                                onClick={() => setAmount(customAmount)}
-                                className={`donation-option p-3 mb-2 rounded border cursor-pointer ${customAmount == amount ? "active" : ""}`}
+                                onClick={() => setFormData(prevState => ({ ...prevState, amount: formData.customAmount }))}
+                                className={`donation-option p-3 mb-2 rounded border cursor-pointer ${formData.customAmount === formData.amount ? "active" : ""}`}
                             >
                                 <h6>Custom Amount</h6>
                                 <InputGroup>
@@ -100,24 +130,25 @@ const Contribute = () => {
                                         placeholder="Enter custom amount"
                                         aria-label="Custom donation"
                                         type="number"
-                                        value={customAmount}
+                                        name="customAmount"
+                                        value={formData.customAmount}
                                         onChange={handleCustomAmount}
                                     />
                                 </InputGroup>
                             </div>
                         </div>
                     </div>
-                    {amount > 0 && (
-                    <div className="d-flex justify-content-center">
-                        <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={() => startCheckout(email, amount)}
-                            disabled={!email || !amount}
-                        >
-                            Contribute ${amount}
-                        </Button>
-                    </div>
+                    {formData.amount > 0 && (
+                        <div className="d-flex justify-content-center">
+                            <Button
+                                variant="primary"
+                                size="lg"
+                                onClick={handleCheckout}
+                                disabled={!formData.email || !formData.amount}
+                            >
+                                Contribute ${formData.amount}
+                            </Button>
+                        </div>
                     )} 
                 </Col>
             </Row>
@@ -126,4 +157,3 @@ const Contribute = () => {
 };
 
 export default Contribute;
-
