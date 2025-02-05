@@ -98,6 +98,17 @@ body {
   margin-right: 30px;
 }
 
+.dropdown-menu.show {
+  background-color: #6f7a76;
+}
+
+.dropdown-item {
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
 .hp-content {
   height: 100vh;
   background: #6f7a76;
@@ -680,9 +691,10 @@ input:focus, textarea:focus, select:focus {
 
 .custom-alert {
   position: fixed;
+  transform-origin: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
   background-color: #eef1ef;
   color: #4e5452;
   padding: 20px;

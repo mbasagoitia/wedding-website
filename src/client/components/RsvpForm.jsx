@@ -40,7 +40,11 @@ const RSVPForm = () => {
     if (e.target.value <= 10) {
       handleChange(e);
     } else {
-      alert("Guest limit of 10");
+      setAlertContent({
+        title: "Error",
+        message: "Guest limit of 10"
+       });
+       setShowAlert(true);
     }
   }
 
