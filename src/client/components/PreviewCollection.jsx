@@ -2,7 +2,7 @@ import PhotoPreviews from "./PhotoPreviews.jsx";
 import { motion } from "framer-motion";
 
 const PreviewCollection = () => {
-    const baseURL = "http://localhost:3000/photos/";
+    const baseURL = "/photos/";
 
     return (
         <motion.div 

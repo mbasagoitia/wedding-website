@@ -8,7 +8,7 @@ const uploadPhotos = async (photoUploadData) => {
 
     formData.append("directory", photoUploadData.directory);
 
-    const response = await fetch("http://localhost:5000/api/photos/upload", {
+    const response = await fetch("/api/photos/upload", {
       method: "POST",
       credentials: "include",
       body: formData,

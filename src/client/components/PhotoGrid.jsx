@@ -9,7 +9,7 @@ const PhotoGrid = ({ directory }) => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/photos/${directory}`);
+        const response = await fetch(`/api/photos/${directory}`);
         if (response.ok) {
           const imagePaths = await response.json();
           setImages(imagePaths);

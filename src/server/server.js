@@ -10,6 +10,7 @@ import photoRouter from "./routes/photoRouter.js";
 import authRouter from "./routes/authRouter.js";
 import rsvpRouter from "./routes/rsvpRouter.js";
 import messageRouter from "./routes/messageRouter.js";
+import webhookRouter from "./routes/webhookRouter.js";
 
 dotenv.config();
 
@@ -17,14 +18,14 @@ const app = express();
 
 app.use(express.json());
 
-const corsOptions = {
-    origin: 'http://localhost:3000', // CORS not needed during production
-    credentials: true,
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
-};
+// const corsOptions = {
+//     origin: 'http://localhost:3000', // CORS not needed during production
+//     credentials: true,
+//     methods: ['GET', 'POST'],
+//     allowedHeaders: ['Content-Type']
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/checkout', checkoutRouter);
+app.use('/api/webhook', webhookRouter);
 app.use('/api/photos', photoRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/rsvp', rsvpRouter);

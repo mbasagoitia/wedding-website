@@ -1,6 +1,6 @@
 const sendMessage = async (formData) => {
     try {
-        const response = await fetch('http://localhost:5000/api/send-message/new', {
+        const response = await fetch('/api/send-message/new', {
             method: 'POST',
             credentials: 'include',
             headers: {

@@ -19,7 +19,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/auth/status", { 
+    fetch("/api/auth/status", { 
         credentials: "include"
     })
     .then(response => response.json())

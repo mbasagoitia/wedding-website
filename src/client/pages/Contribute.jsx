@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button, Form, InputGroup, FormControl, Row, Col } from "react-bootstrap";
+import { motion } from "framer-motion";
+
 import Alert from "../components/Alert.jsx";
 import startCheckout from "../helpers/startCheckout";
 import sendMessage from "../helpers/sendMessage";
@@ -55,7 +57,12 @@ const Contribute = () => {
     };
 
     return (
-        <div className="contribute">
+        <motion.div 
+        className="contribute"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        >
             {showAlert && <Alert content={alertContent} onClose={handleCloseAlert} />}
             <h1 className="my-4">Contribute to Our Honeymoon Fund</h1>
             <p>In lieu of traditional gifts, contributions to our honeymoon fund are warmly welcomed. Please fill out the form below so we can properly thank you!</p>
@@ -150,7 +157,7 @@ const Contribute = () => {
                     )} 
                 </Col>
             </Row>
-        </div>
+        </motion.div>
     );
 };
 

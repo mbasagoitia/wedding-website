@@ -10,9 +10,9 @@ const authenticateUser = async (req, res) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
         code: authCode,
-        client_id: process.env.TEST_OAUTH_CLIENT_ID, //change back
-        client_secret: process.env.TEST_OAUTH_CLIENT_SECRET, //change back
-        redirect_uri: "http://localhost:5000/api/auth/google/callback", // change back
+        client_id: process.env.OAUTH_CLIENT_ID,
+        client_secret: process.env.OAUTH_CLIENT_SECRET,
+        redirect_uri: "https://wedding.basagoitia.net/api/auth/google/callback",
         grant_type: "authorization_code",
       }),
     });
@@ -40,14 +40,14 @@ const authenticateUser = async (req, res) => {
 
     res.cookie("authToken", authToken, {
       httpOnly: true,
-      secure: true, // Use HTTPS
+      secure: true,
       sameSite: "Lax",
     });
 
     res.cookie("userName", user.name, { secure: true, sameSite: "Lax" });
     res.cookie("userEmail", user.email, { secure: true, sameSite: "Lax" });
     
-    res.redirect("http://localhost:3000/photos/upload"); //Change this to actual path on basagoitia.net
+    res.redirect("https://wedding.basagoitia.net/photos/upload");
   } catch (error) {
     console.error("Error handling callback:", error);
     res.status(500).send("Authentication failed.");
