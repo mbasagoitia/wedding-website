@@ -5,11 +5,11 @@ import { fileURLToPath } from 'url';
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-// import errorHandler from "./middlewares/errorHandler.js";
 import checkoutRouter from "./routes/checkoutRouter.js";
 import photoRouter from "./routes/photoRouter.js";
 import authRouter from "./routes/authRouter.js";
 import rsvpRouter from "./routes/rsvpRouter.js";
+import messageRouter from "./routes/messageRouter.js";
 
 dotenv.config();
 
@@ -41,6 +41,7 @@ app.use('/api/checkout', checkoutRouter);
 app.use('/api/photos', photoRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/rsvp', rsvpRouter);
+app.use('/api/send-message', messageRouter);
 
 app.use((req, res, next) => {
   try {
@@ -49,8 +50,6 @@ app.use((req, res, next) => {
     next(err);
   }
 });
-
-// app.use(errorHandler);
 
 const port = process.env.port || 5000;
 

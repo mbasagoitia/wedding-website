@@ -595,12 +595,12 @@ input:focus, textarea:focus, select:focus {
   margin: 2rem;
 }
 
-.contribute {
-  margin: 2rem;
-}
-
 .contribute-row {
   margin-top: 4rem;
+}
+
+.contribute h1, .contribute p {
+  text-align: center;
 }
 
 .donation-option.active {
@@ -779,9 +779,9 @@ input:focus, textarea:focus, select:focus {
   }
 
 
-.photo-preview-section {
-  justify-content: space-between;
-}
+  .photo-preview-section {
+    justify-content: space-between;
+  }
 
   .hotel-image,
   .hotel-description,
@@ -817,6 +817,10 @@ input:focus, textarea:focus, select:focus {
 .pu-upload {
   width: 50%;
   order: 2;
+}
+
+.contribute h1, .contribute p {
+  text-align: left;
 }
 
 }

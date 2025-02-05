@@ -29,7 +29,8 @@ const Contribute = () => {
 
     return (
         <div className="contribute">
-            <h1 className="text-center my-4">Contribute to Our Honeymoon Fund</h1>
+            <h1 className="my-4">Contribute to Our Honeymoon Fund</h1>
+            <p>In lieu of traditional gifts, contributions to our honeymoon fund are warmly welcomed. Please fill out the form below so we can properly thank you!</p>
             <Row className="contribute-row">
                 <Col xs={12} md={6} className="mb-4">
                     <Form onSubmit={handleMessageSubmit}>

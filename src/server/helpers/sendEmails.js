@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sendGuestEmail = async (details) => {
+const sendGuestRsvpEmail = async (details) => {
     try {
         const __dirname = path.dirname(new URL(import.meta.url).pathname);
         const templatePath = path.join(__dirname, 'rsvpTemplate.html');
@@ -40,7 +40,7 @@ const sendGuestEmail = async (details) => {
     }
 };
 
-const sendAdminEmail = async (details) => {
+const sendAdminRsvpEmail = async (details) => {
     try {
         const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -80,7 +80,96 @@ const sendAdminEmail = async (details) => {
     }
 };
 
+const sendGuestContributionEmail = async (details) => {
+    try {
+        const __dirname = path.dirname(new URL(import.meta.url).pathname);
+        const templatePath = path.join(__dirname, 'guestContributionTemplate.html');
+
+        const HTMLData = await fs.readFile(templatePath, 'utf8');
+
+        const htmlContent = HTMLData
+            .replace('{{name}}', details.name)
+    
+        const mailOptions = {
+            from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
+            to: [details.email],
+            subject: 'Thank You For Your Contribution!',
+            html: htmlContent
+        };
+
+        const mailgun = new Mailgun(formData);
+        const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+
+        const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
+        console.log('Emails sent successfully:', response);
+    } catch (err) {
+        console.error("Error sending email:", err);
+    }
+};
+
+const sendAdminContributionEmail = async (details) => {
+    try {
+        const __dirname = path.dirname(new URL(import.meta.url).pathname);
+        const templatePath = path.join(__dirname, 'adminContributionTemplate.html');
+
+        const HTMLData = await fs.readFile(templatePath, 'utf8');
+
+        const htmlContent = HTMLData
+            .replace('{{name}}', details.name)
+            .replace('{{email}}', details.email)
+            .replace('{{amount}}', details.amount)
+    
+        const mailOptions = {
+            from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
+            // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
+            to: ["marika.basagoitia@gmail.com"],
+            subject: 'New Wedding Contribution!',
+            html: htmlContent
+        };
+
+        const mailgun = new Mailgun(formData);
+        const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+
+        const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
+        console.log('Emails sent successfully:', response);
+    } catch (err) {
+        console.error("Error sending email:", err);
+    }
+};
+
+const sendAdminMessageEmail = async (details) => {
+    try {
+        const __dirname = path.dirname(new URL(import.meta.url).pathname);
+        const templatePath = path.join(__dirname, 'adminMessageEmail.html');
+
+        const HTMLData = await fs.readFile(templatePath, 'utf8');
+
+        const htmlContent = HTMLData
+            .replace('{{name}}', details.name)
+            .replace('{{message}}', details.message)
+    
+        const mailOptions = {
+            from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
+            // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
+            to: ["marika.basagoitia@gmail.com"],
+            subject: 'New Wedding Contribution!',
+            html: htmlContent
+        };
+
+        const mailgun = new Mailgun(formData);
+        const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+
+        const response = await mg.messages.create("mg.basagoitia.net", mailOptions);
+        console.log('Emails sent successfully:', response);
+    } catch (err) {
+        console.error("Error sending email:", err);
+    }
+};
+
 export {
-    sendGuestEmail,
-    sendAdminEmail
+    sendGuestRsvpEmail,
+    sendAdminRsvpEmail,
+    sendGuestContributionEmail,
+    sendAdminContributionEmail,
+    sendAdminMessageEmail
 };
