@@ -13,7 +13,9 @@ const sendGuestRsvpEmail = async (details) => {
 
         const HTMLData = await fs.readFile(templatePath, 'utf8');
 
-        const guestNamesString = details.attendance && details.guestNames.length > 0 ? details.guestNames.join(", ") : "N/A";
+        const guestNamesString = details.attendance && details.guestNames.length > 0
+            ? details.guestNames.map(guest => guest.name).join(", ")
+            : "N/A";
 
         const htmlContent = HTMLData
             .replace('{{guestName}}', details.name)
@@ -47,7 +49,9 @@ const sendAdminRsvpEmail = async (details) => {
 
         const HTMLData = await fs.readFile(templatePath, 'utf8');
 
-        const guestNamesString = details.attendance && details.guestNames.length > 0 ? details.guestNames.join(", ") : "N/A";
+        const guestNamesString = details.attendance && details.guestNames.length > 0
+            ? details.guestNames.map(guest => guest.name).join(", ")
+            : "N/A";
 
         const htmlContent = HTMLData
             .replace('{{guestName}}', details.name)

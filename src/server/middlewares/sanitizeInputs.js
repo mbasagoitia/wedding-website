@@ -20,7 +20,12 @@ const sanitizeInputs = (req, res, next) => {
         }
 
         if (Array.isArray(guestNames)) {
-            req.body.guestNames = guestNames.map(guest => validator.escape(guest));
+            req.body.guestNames = guestNames.map((guest) => {
+                return {
+                    name: validator.escape(guest.name),
+                    isChild: typeof guest.isChild === 'boolean' ? guest.isChild : false,
+                };
+            });
         } else {
             req.body.guestNames = [];
         }
