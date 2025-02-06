@@ -65,6 +65,20 @@ body {
   transition: color 0.3s ease;
 }
 
+.dropdown-toggle {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+  color: #a27e77 !important;
+}
+
+.dropdown-item:hover {
+  background-color: #6f7a76;
+  color: #a27e77;
+}
+
 .navbar {
   position: relative;
   z-index: 1000;
@@ -855,6 +869,15 @@ input:focus, textarea:focus, select:focus {
   
   .site-header {
     padding-top: 2.5rem;
+  }
+
+  .dropdown-menu.show {
+    border-radius: 0;
+    border: none;
+  }
+
+  .dropdown-item {
+    background-color: #6f7a76;
   }
 
   @media (min-width: 1200px) {
