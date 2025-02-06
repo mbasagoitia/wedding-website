@@ -715,7 +715,7 @@ input:focus, textarea:focus, select:focus {
   transform: translate(-50%, -50%) !important;
   background-color: #eef1ef;
   color: #4e5452;
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;

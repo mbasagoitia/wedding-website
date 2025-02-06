@@ -4,7 +4,6 @@ import Alert from "./Alert";
 import submitFormData from "../helpers/submitFormData";
 
 const RSVPForm = () => {
-
   const [showAlert, setShowAlert] = useState(false);
   const [alertContent, setAlertContent] = useState({});
 
@@ -12,7 +11,7 @@ const RSVPForm = () => {
     name: '',
     attendance: true,
     guests: 0,
-    guestNames: [],
+    guestNames: [{}],
     email: '',
     phone: '',
     comments: '',
@@ -29,11 +28,26 @@ const RSVPForm = () => {
 
   const handleGuestNameChange = (index, e) => {
     const updatedGuestNames = [...formData.guestNames];
-    updatedGuestNames[index] = e.target.value;
+    updatedGuestNames[index].name = e.target.value;
     setFormData((prevState) => ({
       ...prevState,
       guestNames: updatedGuestNames
     }));
+  };
+
+  const handleGuestIsChildChange = (index, e) => {
+    const updatedGuestNames = [...formData.guestNames];
+    updatedGuestNames[index].isChild = e.target.checked;
+    setFormData((prevState) => ({
+      ...prevState,
+      guestNames: updatedGuestNames
+    }));
+    
+    setAlertContent({
+      title: "Thank You!",
+      message: "We are thrilled to celebrate this special day surrounded by so many of our favorite young people! However, we kindly request that only ladies and gentlemen aged twelve and older join us for our thirty-minute wedding ceremony. For those who feel comfortable, on-site childcare will be available in the reception area, within view of the ceremony. Alternatively, parents are welcome to wait in the reception area with their children during the ceremony. We appreciate your understanding and can't wait to celebrate with you."
+    });
+    setShowAlert(true);
   };
 
   const handleGuestNum = (e) => {
@@ -43,10 +57,10 @@ const RSVPForm = () => {
       setAlertContent({
         title: "Error",
         message: "Guest limit of 10"
-       });
-       setShowAlert(true);
+      });
+      setShowAlert(true);
     }
-  }
+  };
 
   const handleCloseAlert = () => {
     setShowAlert(false);
@@ -59,12 +73,12 @@ const RSVPForm = () => {
       setAlertContent({
         title: "Success!",
         message: res.message
-      })
+      });
     } else {
       setAlertContent({
         title: "Error",
         message: res.message
-      })
+      });
     }
 
     setShowAlert(true);
@@ -118,17 +132,29 @@ const RSVPForm = () => {
               </Form.Group>
 
               {[...Array(Number(formData.guests))].map((_, index) => (
-                <Form.Group controlId={`guest-name-${index + 1}`} key={index}>
-                  <Form.Label>Guest #{index + 1} Full Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter guest's full name"
-                    name={`guestName${index + 1}`}
-                    value={formData.guestNames[index] || ''}
-                    onChange={(e) => handleGuestNameChange(index, e)}
-                    required
-                  />
-                </Form.Group>
+                <div key={index}>
+                  <Form.Group controlId={`guest-name-${index + 1}`}>
+                    <Form.Label>Guest #{index + 1} Full Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter guest's full name"
+                      name={`guestName${index + 1}`}
+                      value={formData.guestNames[index]?.name || ''}
+                      onChange={(e) => handleGuestNameChange(index, e)}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId={`guest-is-child-${index + 1}`}>
+                    <Form.Check
+                      className="my-4"
+                      type="checkbox"
+                      label="This guest is under 12"
+                      checked={formData.guestNames[index]?.isChild || false}
+                      onChange={(e) => handleGuestIsChildChange(index, e)}
+                    />
+                  </Form.Group>
+                </div>
               ))}
 
               <Form.Group controlId="email">

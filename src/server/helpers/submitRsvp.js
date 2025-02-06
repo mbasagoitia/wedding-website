@@ -25,8 +25,8 @@ const submitRsvp = async (req, res) => {
                 const rsvpId = result.insertId;
 
                 if (Array.isArray(guestNames) && guestNames.length > 0) {
-                    const guestQuery = 'INSERT INTO Guests (rsvp_id, guest_name) VALUES ?';
-                    const guestData = guestNames.map((guest) => [rsvpId, guest]);
+                    const guestQuery = 'INSERT INTO Guests (rsvp_id, guest_name, is_child) VALUES ?';
+                    const guestData = guestNames.map((guest) => [rsvpId, guest.name, guest.isChild]);
 
                     db.query(guestQuery, [guestData], (err, guestResult) => {
                         if (err) {
@@ -47,6 +47,5 @@ const submitRsvp = async (req, res) => {
         return { success: false, message: "Internal server error while submitting RSVP." };
     }
 };
-
 
 export default submitRsvp;
