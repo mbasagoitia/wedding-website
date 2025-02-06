@@ -1,9 +1,7 @@
 import express from "express";
-import path from 'path';
-import { join } from "path";
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-import cors from "cors";
 import dotenv from "dotenv";
 import checkoutRouter from "./routes/checkoutRouter.js";
 import photoRouter from "./routes/photoRouter.js";
@@ -15,46 +13,29 @@ import webhookRouter from "./routes/webhookRouter.js";
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
-
-// const corsOptions = {
-//     origin: 'http://localhost:3000', // CORS not needed during production
-//     credentials: true,
-//     methods: ['GET', 'POST'],
-//     allowedHeaders: ['Content-Type']
-// };
-
-// app.use(cors(corsOptions));
-
 app.use(cookieParser());
-
-app.use(express.static("public"));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(express.static("public"));
+
+app.use("/api/checkout", checkoutRouter);
+app.use("/api/webhook", webhookRouter);
+app.use("/api/photos", photoRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/rsvp", rsvpRouter);
+app.use("/api/send-message", messageRouter);
+
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-app.use('/api/checkout', checkoutRouter);
-app.use('/api/webhook', webhookRouter);
-app.use('/api/photos', photoRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/rsvp', rsvpRouter);
-app.use('/api/send-message', messageRouter);
-
-app.use((req, res, next) => {
-  try {
-    res.sendFile(join(__dirname, "../client/build/index.html"));
-  } catch (err) {
-    next(err);
-  }
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
-const port = process.env.port || 5000;
-
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
