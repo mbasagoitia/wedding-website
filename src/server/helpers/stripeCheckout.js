@@ -28,7 +28,7 @@ const stripeCheckout = async (amount, email) => {
       transfer_data: {
         destination: process.env.STRIPE_ACCOUNT_ID,
       },
-      statement_descriptor: 'Alex and Taryn', // Add this line to set the payment descriptor
+      statement_descriptor: 'Alex and Taryn'
     },
   });
 
