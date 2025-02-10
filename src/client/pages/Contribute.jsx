@@ -12,7 +12,7 @@ const Contribute = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        amount: '',
+        amount: 0,
         customAmount: '',
         message: ''
     });
@@ -51,17 +51,45 @@ const Contribute = () => {
         }
     };
 
-    const handleCheckout = () => {
+    const handleCheckout = async () => {
         const finalAmount = formData.customAmount ? formData.customAmount : formData.amount;
+
+        if (formData.message) {
+            const res = await sendMessage(formData);
+            setAlertContent({
+                title: res.success ? "Message Sent!" : "Error",
+                message: res.message
+            });
+            setShowAlert(true);
+            if (!res.success) return;
+        }
+
         startCheckout({ ...formData, amount: finalAmount, customAmount: undefined });
+    };
+
+    const getButtonText = () => {
+        const amount = formData.customAmount || formData.amount;
+        if (amount > 0) {
+            if (formData.message) {
+                return `Send Message and Contribute $${amount}`;
+            } else {
+                return `Contribute $${amount}`;
+            }
+        } else {
+            if (formData.message) {
+                return "Send Message";
+            } else {
+                return "Contribute $0";
+            }
+        }
     };
 
     return (
         <motion.div 
-        className="contribute"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+            className="contribute"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
         >
             {showAlert && <Alert content={alertContent} onClose={handleCloseAlert} />}
             <h1 className="my-4">Contribute to Our Honeymoon Fund</h1>
@@ -104,11 +132,6 @@ const Contribute = () => {
                                 placeholder="Your message here"
                             />
                         </Form.Group>
-                        <div className="d-flex justify-content-center mt-4">
-                            <Button variant="primary" size="lg" type="submit">
-                                Send Message
-                            </Button>
-                        </div>
                     </Form>
                 </Col>
 
@@ -143,20 +166,19 @@ const Contribute = () => {
                             </div>
                         </div>
                     </div>
-                    {formData.amount > 0 && (
-                        <div className="d-flex justify-content-center">
-                            <Button
-                                variant="primary"
-                                size="lg"
-                                onClick={handleCheckout}
-                                disabled={!formData.email || !formData.amount}
-                            >
-                                Contribute ${formData.amount}
-                            </Button>
-                        </div>
-                    )} 
                 </Col>
             </Row>
+
+            <div className="d-flex justify-content-center mt-4">
+                <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={handleCheckout}
+                    disabled={!formData.email || (formData.amount > 0 && !formData.amount)}
+                >
+                    {getButtonText()}
+                </Button>
+            </div>
         </motion.div>
     );
 };
