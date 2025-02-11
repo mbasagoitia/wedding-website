@@ -9,12 +9,18 @@ import authRouter from "./routes/authRouter.js";
 import rsvpRouter from "./routes/rsvpRouter.js";
 import messageRouter from "./routes/messageRouter.js";
 import webhookRouter from "./routes/webhookRouter.js";
+import testWebhookRouter from "./routes/testWebhookRouter.js";
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+
 app.use(cookieParser());
+
+app.use("/api/webhook", webhookRouter)
+app.use("/api/webhooktest", testWebhookRouter);
+
+app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +29,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static("public"));
 
 app.use("/api/checkout", checkoutRouter);
-app.use("/api/webhook", webhookRouter);
+
 app.use("/api/photos", photoRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/rsvp", rsvpRouter);
