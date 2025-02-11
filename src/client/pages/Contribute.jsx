@@ -56,11 +56,6 @@ const Contribute = () => {
 
         if (formData.message) {
             const res = await sendMessage(formData);
-            setAlertContent({
-                title: res.success ? "Message Sent!" : "Error",
-                message: res.message
-            });
-            setShowAlert(true);
             if (!res.success) return;
         }
 
