@@ -15,7 +15,7 @@ const PreviewCollection = () => {
         }}
     >
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                <PhotoPreviews title={"Engagement Photos"} link={`${baseURL}engagement-photos`} photo1={"/images/engagement-photos/color-2.jpeg"} photo2={"/images/engagement-photos/bw-1.jpeg"} />
+                <PhotoPreviews title={"Engagement Photos"} link={`${baseURL}engagement-photos`} photo1={"/images/engagement-photos/color-2-min.jpeg"} photo2={"/images/engagement-photos/bw-1-min.jpeg"} />
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
                 <PhotoPreviews title={"Ceremony (Coming soon)"} link={`${baseURL}ceremony`} photo1={"/images/placeholder-image.jpg"} />
