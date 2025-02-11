@@ -7,8 +7,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Cormorant Garamond", serif;
-    background-color: #eef1ef;
-    color: #4e5452;
+  background-color: #eef1ef;
+  color: #4e5452;
   font-size: 1.2rem;
 }
 
@@ -42,6 +42,7 @@ body {
 
 .site-title a {
   text-decoration: none;
+  color: red !important;
 }
 
 .hp-subtitle {
