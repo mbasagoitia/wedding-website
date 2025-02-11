@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const stripeCheckout = async (amount, email) => {
   const session = await stripe.checkout.sessions.create({
@@ -15,7 +15,7 @@ const stripeCheckout = async (amount, email) => {
           product_data: {
             name: 'Wedding Gift Contribution',
           },
-          unit_amount: amount * 100, // Convert to cents
+          unit_amount: amount * 100,
         },
         quantity: 1,
       },
@@ -25,6 +25,7 @@ const stripeCheckout = async (amount, email) => {
     cancel_url: 'https://wedding.basagoitia.net/cancel',
     customer_email: email,
     payment_intent_data: {
+      on_behalf_of: process.env.STRIPE_ACCOUNT_ID,
       transfer_data: {
         destination: process.env.STRIPE_ACCOUNT_ID,
       },

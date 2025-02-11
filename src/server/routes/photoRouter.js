@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/" });
 
-router.post('upload', upload.array("images"), checkAuth, validateImageFiles, uploadImages);
+router.post('/upload', upload.array("images"), checkAuth, validateImageFiles, uploadImages);
 
 router.get('/:directory', getImages);
 
