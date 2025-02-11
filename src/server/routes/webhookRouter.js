@@ -3,7 +3,10 @@ import dotenv from "dotenv";
 import { sendGuestContributionEmail, sendAdminContributionEmail } from "../helpers/sendEmails.js";
 import submitContribution from "../helpers/submitContribution.js";
 
-const stripe = require('stripe')('sk_test_51QjMMWKPzIRnXhtuRFLH7kraRbKLR4Ras69tSufcXAccjNY0p8Ary8GCLolAU9TUQ9EVw8zPgorYuPe2oNRprgdJ00uNhYZc9y');
+dotenv.config();
+
+// const stripe = require('stripe')('sk_test_51QjMMWKPzIRnXhtuRFLH7kraRbKLR4Ras69tSufcXAccjNY0p8Ary8GCLolAU9TUQ9EVw8zPgorYuPe2oNRprgdJ00uNhYZc9y');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 dotenv.config();
 
