@@ -8,13 +8,11 @@ dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-dotenv.config();
-
 const router = express.Router();
 
 router.post('/', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
-
+    console.log("request:", req);
   let event;
 
   try {
