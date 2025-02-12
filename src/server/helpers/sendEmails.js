@@ -66,8 +66,8 @@ const sendAdminRsvpEmail = async (details) => {
         
         const mailOptions = {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
-            to: ["marika.basagoitia@gmail.com"],
-            // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
+            // to: ["marika.basagoitia@gmail.com"],
+            to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
             subject: 'New Wedding RSVP',
             html: htmlContent
         }
@@ -122,8 +122,8 @@ const sendAdminContributionEmail = async (details) => {
     
         const mailOptions = {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
-            // to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
-            to: ["marika.basagoitia@gmail.com"],
+            to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
+            // to: ["marika.basagoitia@gmail.com"],
             subject: 'New Wedding Contribution',
             html: htmlContent
         };
@@ -150,8 +150,8 @@ const sendAdminMessageEmail = async (details) => {
     
         const mailOptions = {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
-            //to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
-            to: ["marika.basagoitia@gmail.com"],
+            to: ["alex.basagoitia@gmail.com", "TarynChovan@outlook.com"],
+            // to: ["marika.basagoitia@gmail.com"],
             subject: 'New Wedding Message',
             html: htmlContent
         };
