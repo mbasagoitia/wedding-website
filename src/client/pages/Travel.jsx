@@ -20,6 +20,13 @@ const Travel = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.3 }}
             >
+                Venue Location: <a href="https://www.cascatasprings.com/" target="_blank" rel="noreferrer">Cascata Springs</a> 2164 Mooresville Hwy, Lewisburg, TN 37091
+            </motion.p>
+            <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+            >
                 The closest airport is Nashville International Airport (BNA), approximately one hour from the venue by car. While public transportation options are limited near the venue, Nashville has transit services to help you explore the city if you plan to stay there.
             </motion.p>
 
