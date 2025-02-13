@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cookieParser());
 
-app.use("/api/webhook", webhookRouter)
+app.use('/webhook', express.raw({ type: 'application/json' }), webhookRouter); 
 app.use("/api/webhooktest", testWebhookRouter);
 
 app.use(express.json());
