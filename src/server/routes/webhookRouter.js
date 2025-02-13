@@ -27,6 +27,7 @@ router.post('/', express.raw({ type: 'application/json' }), async (req, res) => 
       const requestBody = {
         amount: session.amount_total / 100, // Convert to dollars
         email: session.customer_email,
+        name: session.customer_details.name
       };
 
       await sendGuestContributionEmail(requestBody);

@@ -9,12 +9,10 @@ const dbConfig = {
 
 const db = mysql.createConnection(dbConfig);
 
-const submitContribution = async (req, res) => {
+const submitContribution = async ({ name, email, amount }) => {
     try {
-        const { name, email, amount } = req.body;
-
         if (!name || !email || !amount) {
-            return res.status(400).json({ success: false, message: "Name, email, and amount are required." });
+            throw new Error("Name, email, and amount are required.");
         }
 
         const contributionQuery = 'INSERT INTO guest_contributions (name, email, amount) VALUES (?, ?, ?)';
@@ -33,7 +31,7 @@ const submitContribution = async (req, res) => {
 
     } catch (error) {
         console.error("Unexpected error in submitContribution:", error);
-        return res.status(500).json({ success: false, message: "Internal server error while submitting contribution." });
+        throw new Error("Internal server error while submitting contribution.");
     }
 };
 

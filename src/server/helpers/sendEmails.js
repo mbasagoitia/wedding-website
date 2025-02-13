@@ -91,11 +91,12 @@ const sendGuestContributionEmail = async (details) => {
 
         const htmlContent = HTMLData
             .replace('{{name}}', details.name)
+            .replace('{{amount}}', details.amount)
     
         const mailOptions = {
             from: 'Alex and Taryn <postmaster@mg.basagoitia.net>',
             to: [details.email],
-            subject: 'Thank You For Your Contribution!',
+            subject: 'Thank You For Your Gift!',
             html: htmlContent
         };
 
