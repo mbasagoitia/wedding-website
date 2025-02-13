@@ -7,14 +7,11 @@ import submitContribution from "../helpers/submitContribution.js";
 dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log(process.env.STRIPE_SECRET_KEY);
-console.log(process.env.STRIPE_WEBHOOK_SECRET);
-
 
 const router = express.Router();
 
 router.post('/', express.raw({ type: 'application/json' }), async (req, res) => {
-    res.send(200).json({ succes: true, message: "Endpoint hit" })
+    res.status(200).json({ succes: true, message: "Endpoint hit" })
 //   const sig = req.headers['stripe-signature'];
 //   let event;
 
