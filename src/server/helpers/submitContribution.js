@@ -5,9 +5,12 @@ const dbConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 };
 
-const db = mysql.createConnection(dbConfig);
+const db = mysql.createPool(dbConfig);
 
 const submitContribution = async ({ name, email, amount }) => {
     try {
@@ -18,14 +21,25 @@ const submitContribution = async ({ name, email, amount }) => {
         const contributionQuery = 'INSERT INTO guest_contributions (name, email, amount) VALUES (?, ?, ?)';
 
         return new Promise((resolve, reject) => {
-            db.query(contributionQuery, [name, email, amount], (err, result) => {
+
+            db.getConnection((err, connection) => {
                 if (err) {
-                    console.error('Error inserting data into guest_contributions:', err);
-                    reject(new Error('Database error while inserting contribution.'));
+                    console.error('Error getting connection from pool:', err);
+                    reject(new Error('Database error while getting a connection.'));
                     return;
                 }
 
-                resolve({ success: true, message: 'Contribution submitted successfully!' });
+                connection.query(contributionQuery, [name, email, amount], (err, result) => {
+                    connection.release(); 
+
+                    if (err) {
+                        console.error('Error inserting data into guest_contributions:', err);
+                        reject(new Error('Database error while inserting contribution.'));
+                        return;
+                    }
+
+                    resolve({ success: true, message: 'Contribution submitted successfully!' });
+                });
             });
         });
 
