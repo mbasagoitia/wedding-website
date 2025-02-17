@@ -168,7 +168,7 @@ const Contribute = () => {
                 <Button
                     variant="primary"
                     size="lg"
-                    onClick={formData.amount > 0 || customAmount ? handleCheckout : handleMessageSubmit}
+                    onClick={formData.amount > 0 || formData.customAmount ? handleCheckout : handleMessageSubmit}
                     disabled={!formData.email || (formData.amount > 0 && !formData.amount)}
                 >
                     {getButtonText()}
