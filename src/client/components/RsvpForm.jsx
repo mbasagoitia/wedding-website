@@ -52,11 +52,13 @@ const RSVPForm = () => {
       guestNames: updatedGuestNames
     }));
 
-    setAlertContent({
-      title: "Thank You!",
-      message: "We are thrilled to celebrate this special day surrounded by so many of our favorite young people! However, we kindly request that only ladies and gentlemen aged twelve and older join us for our thirty-minute wedding ceremony. For those who feel comfortable, on-site childcare will be available in the reception area, within view of the ceremony. Alternatively, parents are welcome to wait in the reception area with their children during the ceremony. We appreciate your understanding and can't wait to celebrate with you."
-    });
-    setShowAlert(true);
+    if (e.target.checked) {
+      setAlertContent({
+        title: "Thank You!",
+        message: "We are thrilled to celebrate this special day surrounded by so many of our favorite young people! However, we kindly request that only ladies and gentlemen aged twelve and older join us for our thirty-minute wedding ceremony. For those who feel comfortable, on-site childcare will be available in the reception area, within view of the ceremony. Alternatively, parents are welcome to wait in the reception area with their children during the ceremony. We appreciate your understanding and can't wait to celebrate with you."
+      });
+      setShowAlert(true);
+    }
   };
 
   const handleGuestNum = (e) => {
