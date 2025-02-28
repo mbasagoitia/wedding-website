@@ -60,9 +60,19 @@ const RSVPForm = () => {
       setShowAlert(true);
     }
   };
-
   const handleGuestNum = (e) => {
-    const guestCount = Number(e.target.value);
+    const value = e.target.value;
+  
+    if (value === "") {
+      setFormData((prevState) => ({
+        ...prevState,
+        guests: value,
+      }));
+      return;
+    }
+  
+    const guestCount = Number(value);
+  
     if (guestCount <= 10) {
       setFormData((prevState) => ({
         ...prevState,
