@@ -27,13 +27,22 @@ const RSVPForm = () => {
   };
 
   const handleGuestNameChange = (index, e) => {
-    const updatedGuestNames = [...formData.guestNames];
-    updatedGuestNames[index].name = e.target.value;
-    setFormData((prevState) => ({
-      ...prevState,
-      guestNames: updatedGuestNames
-    }));
+    setFormData((prevState) => {
+      const updatedGuestNames = [...prevState.guestNames];
+      
+      if (!updatedGuestNames[index]) {
+        updatedGuestNames[index] = { name: '', isChild: false };
+      }
+  
+      updatedGuestNames[index].name = e.target.value;
+  
+      return {
+        ...prevState,
+        guestNames: updatedGuestNames,
+      };
+    });
   };
+  
 
   const handleGuestIsChildChange = (index, e) => {
     const updatedGuestNames = [...formData.guestNames];
@@ -51,16 +60,22 @@ const RSVPForm = () => {
   };
 
   const handleGuestNum = (e) => {
-    if (e.target.value <= 10) {
-      handleChange(e);
+    const guestCount = Number(e.target.value);
+    if (guestCount <= 10) {
+      setFormData((prevState) => ({
+        ...prevState,
+        guests: guestCount,
+        guestNames: Array.from({ length: guestCount }, (_, index) => prevState.guestNames[index] || { name: '', isChild: false }),
+      }));
     } else {
       setAlertContent({
         title: "Error",
-        message: "Guest limit of 10"
+        message: "Guest limit of 10",
       });
       setShowAlert(true);
     }
   };
+  
 
   const handleCloseAlert = () => {
     setShowAlert(false);
